@@ -1,0 +1,1086 @@
+
+=== PAGE 1 ===
+DRAFT-WORK PRODUCT PRIVILEGE 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+APPRAISAL OF ECONOMIC LOSS  
+RESULTING FROM INJURY TO FIRST LAST 
+ 
+ 
+PREPARED BY:  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+One University Plaza ~ Suite 302 
+Hackensack, New Jersey 07601 
+Phone: (201) 343-0700 
+Fax: (201) 343-0757 
+ 
+ 
+PREPARED FOR:   
+ 
+ 
+REGARDING: 
+ 
+ 
+ 
+DATE OF BIRTH: 
+ 
+ 
+ 
+REPORT DATE: 
+ 
+ 
+ 
+ 
+
+=== PAGE 2 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+2  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+Table of Contents 
+ 
+ 
+CERTIFICATION ................................................................................................................ 3 
+PURPOSE OF APPRAISAL ............................................................................................... 4 
+OPINION OF ECONOMIC LOSSES.................................................................................. 4 
+BACKGROUND FACTS AND ASSUMPTIONS ................................................................ 5 
+Summary Information ..................................................................................................... 5 
+Life Expectancy ............................................................................................................... 5 
+Statistical retirement age ................................................................................................ 5 
+Expected working years ................................................................................................. 5 
+Worklife-to Retirement Ratio .......................................................................................... 6 
+Description of Incident .................................................................................................... 6 
+Occupation and Employment ......................................................................................... 6 
+Earnings History .............................................................................................................. 7 
+Pre-injury Earnings Capacity: ......................................................................................... 7 
+Fringe Benefits ................................................................................................................ 7 
+Functionality and Future Employability .......................................................................... 8 
+Post-injury Earnings Capacity ........................................................................................ 9 
+Growth Wage Rates ....................................................................................................... 9 
+Household Services ...................................................................................................... 10 
+COMPONENTS OF ANALYSIS ....................................................................................... 12 
+PRE‐INJURY ADJUSTED EARNINGS ........................................................................... 13 
+PRE‐INJURY ADJUSTED EARNINGS FOLLOWING RTW ........................................... 15 
+POST‐INJURY ADJUSTED EARNINGS FOLLOWING DEPARTURE FROM FULL 
+DUTY POSITION .............................................................................................................. 16 
+COST OF LIFETIME CARE ............................................................................................. 18 
+Methodology.................................................................................................................. 20 
+Summary of Findings .................................................................................................... 20 
+Important Considerations ............................................................................................. 21 
+COST OF LIFETIME CARE ............................................................................................. 23 
+TABLES ............................................................................................................................ 24 
+STATEMENT OF ETHICAL PRINCIPLES AND PRINCIPLES OF PROFESSIONAL ... 38 
+PRACTICE ........................................................................................................................ 38 
+ .......................................................................................................................................... 38 
+ 
+ 
+ 
+
+=== PAGE 3 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+3  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+ 
+ECONOMIC LOSS APPRAISAL REPORT  
+Introduction 
+ 
+This Economic Loss Appraisal Report has been prepared by [Expert Name], a forensic economist, 
+in the matter of [Case Name], to evaluate the economic losses resulting from [Plaintiff’s] injuries (or 
+wrongful death). The purpose of this report is to quantify various categories of economic damages in 
+a manner that is clear, comprehensive, and compliant with the Daubert standard for expert 
+testimony. The key components of loss addressed include: 
+• 
+Lost Wages/Earnings Capacity – the value of past and future income (and benefits) lost 
+due to the incident. 
+• 
+Future Medical and Healthcare Costs – the present value of reasonable future medical 
+expenses related to the injury. 
+• 
+Loss of Household Services – the economic value of household tasks and services 
+[Plaintiff] can no longer perform. 
+ 
+All findings are presented in plain language with technical details explained for a general audience. 
+Specialized terms are defined throughout the report and in a glossary. The methodologies used are 
+grounded in well-established economic principles and reliable methods that have been published in 
+peer-reviewed literature and are generally accepted in the field. This report adheres to Daubert 
+criteria by using reliable principles and methods, referencing peer-reviewed sources, discussing 
+potential error rates or uncertainties, and applying the methods to the facts of this case. All 
+assumptions, data sources, and calculations are documented in the sections below, and all opinions 
+are stated to a reasonable degree of economic certainty. 
+ 
+Report Structure: After summarizing the data and assumptions considered, the report details each 
+category of loss in turn (Lost Wages, Future Medical Costs, Household Services), followed by a 
+summary of total losses. Each section outlines the methodology and reasoning, ensuring 
+transparency and layperson accessibility. A final section provides requisite expert disclosures, 
+including qualifications, materials reviewed, assumptions, exhibits, and a signature attestation. 
+ 
+Materials Considered 
+ 
+In preparing this analysis, I have reviewed and relied upon the following materials and data (among 
+others): 
+• 
+Case Documents: [List key documents: e.g. Complaint, deposition of [Plaintiff], accident 
+reports]. 
+• 
+Medical Records & Life Care Plan: [e.g. Medical reports from Dr. A; Life Care Plan by 
+[Name] dated ___ outlining future care needs]. 
+• 
+Employment & Earnings Records: [e.g. pay stubs, W-2 forms, tax returns, employment file 
+from [Plaintiff’s] employer]. 
+• 
+Economic & Statistical Data: U.S. Bureau of Labor Statistics (wage data, Consumer Price 
+Index), published worklife expectancy tables, life expectancy tables (e.g. U.S. CDC Life 
+Tables), and relevant economic research literature. 
+• 
+Other: [Any other data: e.g. vocational expert report, family testimony on household 
+services, etc.]. 
+ 
+(Modify the above list as needed for the specific case, ensuring all materials considered are listed.) 
+ 
+Key Assumptions 
+The following assumptions underlie the calculations in this report (to be adjusted per case specifics): 
+• 
+Employment but for Incident: It is assumed that absent the incident, [Plaintiff] would have 
+continued working in their usual capacity up to a normal retirement age of [X] years (or for 
+
+=== PAGE 4 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+4  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+[Y] additional years of worklife). This worklife expectancy is based on statistical averages 
+adjusted for [Plaintiff’s] age, gender, and work historyresearchgate.net. 
+• 
+Post-Incident Work Capacity: [Plaintiff] is now unable to work (or can only work in a 
+limited capacity earning $___ per year), per medical/vocational evidence, resulting in a loss 
+of earning capacity as detailed below. 
+• 
+Fringe Benefits: Employer-provided benefits (health insurance, retirement contributions, 
+etc.) comprised approximately [Z]% of wages and are included as part of the lost 
+compensationphysicianlcp.com. 
+• 
+Income Taxes: Calculations of lost earnings are presented on an [after-tax basis] (if 
+applicable under jurisdiction) so that the award reflects net take-home pay loss. A combined 
+federal/state tax rate of ___% is assumed for this purpose. 
+• 
+Life Expectancy: [Plaintiff] has a remaining life expectancy of ___ years, based on 
+[source, e.g. U.S. Life Tables], which is used to project future losses through the year 
+____. If the injury is expected to impact longevity, medical expert input is used to adjust this 
+expectation. 
+• 
+Discount Rate: A discount rate of ___% is used to convert future dollars to present value. 
+This rate is chosen to reflect a risk-free rate of return (e.g. based on U.S. Treasury or tax-
+free municipal bond yields) appropriate for a lump-sum awardweaver.com. 
+• 
+Inflation Rates: Future wage growth and medical cost inflation are assumed at ___% 
+annually (based on historical data and current economic forecasts for wages and healthcare 
+costs, respectivelyweaver.com). These inflation assumptions are paired with the discount 
+rate to ensure consistency (e.g. real vs. nominal projections). 
+• 
+Household Services: It is assumed that [Plaintiff] performed approximately ___ hours per 
+week of household and family services pre-incident (based on time-use data or family 
+testimony), and that due to the injury [he/she] can no longer perform [all or a specific 
+portion] of these tasks. The types of services affected include [list: e.g. cleaning, cooking, 
+childcare, yard work]. 
+• 
+Mitigation: Any mitigation or offset (such as actual earnings post-incident, or replacement 
+services provided by others) has been considered and will be noted in the calculations. It is 
+assumed that [Plaintiff] has made reasonable efforts to mitigate losses where possible. 
+ 
+(Each assumption should be reviewed and modified to fit the facts of the case. Additional 
+assumptions can be added as needed.) 
+ 
+Methodology and Daubert Reliability 
+ 
+Present Value Concept: All future economic losses in this report are converted to present value, 
+which is the amount of money that, if received today and invested, would exactly cover the future 
+losses as they come duephysicianlcp.com. Present value calculations account for two key factors: 
+(1) expected inflation (the rising cost of wages or medical services over time), and (2) the time 
+value of money (the interest or return that can be earned by investing the award)physicianlcp.com. 
+By adjusting for these factors, the goal is to ensure the plaintiff is fully compensated without over- or 
+under-paying for future needs. In practical terms, this means future dollar amounts are discounted 
+back to today’s dollars using an appropriate discount rate, after first incorporating any expected 
+growth or inflation in those costs. For example, if a medical expense is expected to cost significantly 
+more in 10 years due to medical inflation, we first project that future cost, then discount it to what 
+would be needed today to fund that expense. 
+ 
+Reliable Principles & Methods: The methods used in this analysis are standard in the field of 
+forensic economics and based on well-established financial principles. These methods have been 
+published in economic literature and subjected to peer reviewcfes.com. For instance, the approach 
+to valuing lost earnings and benefits draws on published models (such as Dr. Frank Tinari’s 
+algebraic method for lost earningsresearchgate.net, discussed below), and the valuation of 
+
+=== PAGE 5 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+5  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+household services often uses data from authoritative sources like the U.S. Bureau of Labor 
+Statistics and the American Time Use Surveytheknowlesgroup.org. Each component of loss is 
+calculated using generally accepted techniques in the economics professioncfes.com, and the 
+calculations can be tested or replicated by another expert given the same data. Key publications and 
+sources supporting these methods are cited throughout this report. 
+ 
+Known Error Rates & Uncertainty: Economic damage assessment is based on forecasts and 
+statistical averages; as such, it is not amenable to a precise “error rate” in the same sense as a 
+laboratory experimentcfes.com. However, to address uncertainty, conservative assumptions have 
+been used and sensitivity analyses can be performed if needed (for example, evaluating how results 
+change with a higher or lower discount rate). The data inputs (e.g. wage rates, growth rates) are 
+derived from large samples or reliable studies, reducing the likelihood of significant error. The 
+methodologies themselves (present value calculations, life expectancy tables, etc.) are transparent 
+and have been tested over time in the literature and in courtroom application. In short, while future 
+economic projections involve some uncertainty, the approach adheres to “reasonable degree of 
+economic certainty” standards. Any potential variability is acknowledged, and the chosen 
+assumptions err on the side of reasonable, fact-based estimates rather than speculation. 
+Application to Case Facts: Importantly, the principles and models have been applied specifically to 
+the facts of [Plaintiff’s] situation. All calculations use case-specific data (such as [Plaintiff’s] actual 
+earnings, medical needs, etc.), and the assumptions (worklife expectancy, life expectancy, etc.) are 
+tailored to [Plaintiff] (taking into account age, health status, occupation, etc.). By combining 
+established methods with case-specific facts, the analysis remains both relevant and reliable, 
+satisfying the Daubert requirement that the expert’s methods are reliably applied to the facts at 
+hand. 
+ 
+(The above methodology section can be adjusted or expanded as needed. It establishes that the 
+expert’s approach is scientifically/technically grounded and Daubert-compliant.) 
+ 
+Lost Wages and Earnings Capacity 
+ 
+This section addresses the lost wages (past and future earning capacity) attributable to the incident. 
+“Lost earnings” represent the income [Plaintiff] would have likely earned from employment but for 
+the injury (or death), including salary, wages, and fringe benefits such as health insurance and 
+retirement contributionsphysicianlcp.com. Both past losses (from the date of incident to the present) 
+and future losses (from now through the end of the expected working life) are calculated. The 
+analysis employs Frank Tinari’s algebraic methodology for demonstrating lost earnings, which 
+condenses the calculations into a clear formula formatresearchgate.net. This algebraic approach has 
+the advantage of presenting the loss computation in a straightforward way that is easier for 
+laypersons (e.g. jurors) to understand, compared to exhaustive year-by-year 
+spreadsheetsresearchgate.net. All calculations, however, can be cross-verified by traditional 
+spreadsheet methods, ensuring accuracy and consistency. 
+ 
+Past Lost Earnings (to Date) 
+ 
+[Plaintiff] was injured on [Date of Incident], and as a result has experienced wage loss from that 
+date through [present/trial date]. Past lost earnings are computed by comparing [Plaintiff’s] actual 
+earnings after the injury to what [Plaintiff] would have earned had the injury not occurred, over the 
+same time period. In this case: 
+• 
+Pre-Incident Earnings Rate: [Plaintiff] was earning $___ per year (or $___ per hour for a 
+__-hour workweek) prior to the injury. This is derived from [Plaintiff’s] wage records (e.g. 
+pay stubs/tax returns) for the period immediately before the incident. 
+
+=== PAGE 6 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+6  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+• 
+Post-Incident Earnings: After the incident, [Plaintiff] has earned $___ (if any) through 
+alternate work or disability benefits. (If Plaintiff has not been able to work at all post-incident, 
+then post-incident earnings are $0.) 
+• 
+Lost Wages to Date: The difference between expected earnings and actual earnings from 
+[Date] to [Date] is $______, which represents wages not earned due to the incident. This is 
+calculated year-by-year for each calendar year or partial year. For example, in [Year 1], 
+[Plaintiff] lost approximately $___ in wages (expected $___ minus actual $___). Summing 
+across all periods yields the total past wage loss. 
+• 
+Lost Fringe Benefits: In addition to wages, the value of lost employer-paid benefits has 
+been included. Using a fringe benefit rate of [Z%], the wage losses were grossed-up to 
+account for benefits like health insurance, retirement contributions, etc., that [Plaintiff] would 
+have received. This adds approximately $___ to the past losses. 
+• 
+Adjustments: Past losses are calculated in nominal dollars of each year and, if appropriate, 
+brought to current dollars. Some jurisdictions allow adding pre-judgment interest to 
+compensate for the lost use of money; if applicable, interest at __% per annum has been 
+applied to past losses from the time of loss to present, totaling $___. (Alternatively, if not 
+applying interest, note that past losses are already expressed in today’s dollars or as of trial 
+date.) 
+ 
+Past lost earnings are essentially a reimbursement for paychecks that [Plaintiff] could not collect 
+due to the injury. We look at what [he/she] likely would have made in that time versus what [he/she] 
+actually made (if anything), and the shortfall is the economic loss. These figures are based on actual 
+documented earnings and thus relatively straightforward. 
+ 
+Future Lost Earning Capacity (Post-Trial) 
+ 
+Future lost earnings represent the present value of the income [Plaintiff] is expected to lose from 
+now through the end of [his/her] expected career. This takes into account raises, the likelihood of 
+continued employment, taxes, and other factors. Rather than list dozens of years of projections in a 
+complex spreadsheet, we employ an algebraic model to encapsulate the key factors influencing 
+future earnings lossresearchgate.net. According to the methodology described by Tinari (2016), 
+many of the adjustments can be combined into a single formula for clarityresearchgate.net. An 
+example of such an algebraic expression is: 
+∗∗AIF∗∗={[(GE×WLE)×(1−UF)]×(1−TL)}×(1−PC),**AIF** = \{ [ (GE \times WLE) \times (1 - UF) ] 
+\times (1 - TL) \} \times (1 - PC),∗∗AIF∗∗={[(GE×WLE)×(1−UF)]×(1−TL)}×(1−PC), 
+ 
+where AIF is the Adjusted Income Factor (a percentage of gross earnings effectively lost), GE is 
+annual Gross Earnings, WLE is the Worklife Expectancy (in years, adjusted for labor force 
+participation), UF is the unemployment factor (probability of unemployment in a given year), TL is 
+the tax liability rate (to get after-tax income), and PC is the personal consumption rate (the portion of 
+income the individual would have spent on themselves)researchgate.netresearchgate.net. This 
+formula essentially applies, in sequence, the reductions to gross potential earnings for the probability 
+of not working each year (unemployment), for taxes, and (in wrongful death cases) for the 
+decedent’s own consumption, yielding the portion of earnings truly “lost” to the 
+familyresearchgate.net. The algebraic steps replace what would otherwise be many columns in a 
+year-by-year spreadsheet, making the calculation more transparentresearchgate.net. 
+Application to [Plaintiff]: Using the above approach (appropriately tailored to this case), [Plaintiff’s] 
+future lost earning capacity is calculated as follows: 
+• 
+Base Annual Earnings (GE): We start with [Plaintiff]’s expected annual income as of the 
+valuation date (trial). This is $___, based on current or most recent pay rate (or the average 
+of past earnings, adjusted for expected raises). This figure may also consider career 
+progression or promotions [Plaintiff] likely would have achieved. 
+
+=== PAGE 7 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+7  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+• 
+Worklife Expectancy (WLE): Based on [Plaintiff]’s age (__) and other demographic factors, 
+the statistical worklife remaining is __ years. This was determined from standard worklife 
+tables (which account for labor force participation rates and probability of retirement or death 
+before retirement). For example, a __-year-old [male/female] with [Plaintiff]’s education 
+typically would be expected to work until around age __, yielding about __ more years of 
+work, on average. 
+• 
+Unemployment Adjustment (UF): To reflect real-world contingencies (illness, job changes, 
+layoffs), an unemployment risk factor of __% per year is incorporatedresearchgate.net. This 
+means we assume that in any given year, there is a small chance [Plaintiff] might not be 
+employed (even without the injury), thereby slightly reducing the total earnings expectancy. 
+(For instance, a 3% annual unemployment probability over a career effectively reduces total 
+expected earnings by a similar proportion in present value terms.) 
+• 
+Fringe Benefits (FB): If not already accounted for in GE. We adjust the gross earnings 
+upward by [Z]% to include fringe benefits. That is, total compensation = $___ (wages) + 
+[Z]% in benefits. This ensures lost health insurance, retirement contributions, etc., are 
+included in the loss estimatephysicianlcp.com. (If GE was defined as salary only, we apply 
+the (1 + FB) factor in the formula analogous to Tinari’s extended formularesearchgate.net.) 
+• 
+Taxes (TL): A combined effective tax rate of __% is applied to gross earnings (including 
+fringes) to determine after-tax take-home payresearchgate.net. Damage awards for lost 
+earnings are typically based on after-tax income (depending on jurisdiction) since the 
+objective is to compensate the actual loss to the household. After this adjustment, we have 
+[Plaintiff]’s after-tax, after-contingency earnings. 
+• 
+Personal Consumption (PC): (This factor applies primarily in wrongful death cases.) In a 
+wrongful death context, one must deduct the portion of the decedent’s income that would 
+have been spent on themselves (personal consumption), because only the income that 
+would have been used to support others is considered an economic loss to survivors. Based 
+on family size and spending studies, a personal consumption rate of __% is used (e.g., the 
+decedent might have used 25% of after-tax income for personal needs, leaving 75% for 
+family support). We apply (1 - PC) = __% to the after-tax income to get the portion lost to the 
+survivorsresearchgate.net. (In a personal injury case where the plaintiff is alive and is the 
+beneficiary of their own earnings, no personal consumption deduction is taken – the full after-
+tax income is a loss to them.) 
+• 
+Resulting Adjusted Income Factor: Combining the above factors yields an Adjusted 
+Income Factor (AIF) of approximately __%. For example, if we start with $100 of gross 
+earnings, after adjusting for worklife (say 95% remaining on average), unemployment (e.g. 
+97%), taxes (say 75% net), and personal consumption (if applicable, say 75% for 
+dependents), the result might be around 55% of gross. In fact, Tinari’s example found an AIF 
+of about 58.5% in one scenarioresearchgate.net. In our case, the calculated AIF is __%, 
+meaning that effectively [only __ cents of each $1 of potential gross earnings is realized 
+as an economic loss] after all adjustments. This factor is applied to [Plaintiff]’s projected 
+gross earnings stream. 
+• 
+Projected Earnings and Growth: We project [Plaintiff]’s earnings over the remaining 
+worklife, considering raises or productivity growth. An annual wage growth rate of __% is 
+assumed. (This may be based on historical average wage inflation or specific industry 
+expectations. If using a net discount rate approach, wage growth may be offset against the 
+discount rate, see below.) 
+• 
+Discounting to Present Value: Each future year’s lost earnings (after adjustments above) 
+are present-valued to today using the chosen __% discount rate. The present value formula 
+essentially divides future amounts by factors of (1 + discount rate)^t for each year t 
+aheadphysicianlcp.com. In practice, after applying the AIF to the total projected gross 
+earnings, the resulting future loss stream is discounted using standard present value tables 
+or formulas. Because our AIF already incorporates many factors annually, what remains is 
+primarily to apply the discount factor for the time value of money. 
+
+=== PAGE 8 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+8  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+ 
+The total present value of future lost earnings is calculated to be $________. This represents the 
+lump sum amount that, if invested today at a safe rate, would replace the income [Plaintiff] is 
+expected to lose in the future. The calculation can be provided in detail: for example, “After 
+adjustments, [Plaintiff]’s annual after-tax lost earnings start at $___ in the first year and would have 
+grown to $___ by the final year of work; discounting each year’s loss back to present at % and 
+summing yields $_.” To ensure transparency, a simplified table of future losses is attached as 
+Exhibit [A], showing a sample of year-by-year lost earnings and present value factors. 
+ 
+Lay Explanation: In simpler terms, for future losses we figured out how much of [Plaintiff]’s expected 
+paycheck would truly count as a loss (after considering realities like taxes and the chance of 
+unemployment). Then we calculated how much money, if given now, would equal all those lost 
+paychecks over the years to come. This involves shrinking future dollars to today’s dollars (since a 
+dollar in the future is worth less than a dollar today). The end result is a single amount today that 
+would replace [Plaintiff]’s lost earning power over time. We rely on established economic formulas to 
+do this, which have been demonstrated in economics journals to improve clarityresearchgate.net. 
+Notably, Dr. Frank Tinari’s research shows that summarizing the loss calculation algebraically in this 
+way can make it more understandable without losing accuracyresearchgate.net. The method used 
+here is consistent with that guidance and has been cross-checked for accuracy. 
+ 
+Note: If [Plaintiff] is expected to have any residual earning capacity (for example, can work part-time 
+or in a lesser role despite the injury), that post-injury earning capability is taken into account as 
+mitigation, reducing the future loss. In this analysis, we have [deducted $___ per year that [Plaintiff] 
+can still earn/ factored in that [Plaintiff] will likely secure a job paying $___ starting in 2 years, etc.]. 
+The figures above reflect net loss after such mitigation. 
+ 
+Future Medical Care Costs 
+This section estimates the future healthcare and life-care expenses that [Plaintiff] will incur as a 
+result of the injuries, and calculates the present value needed to fund those expenses. Future 
+medical costs often constitute a significant economic loss in personal injury cases, and must be 
+evaluated with careful attention to medical necessity, cost inflation, and life expectancy. 
+ 
+Basis of Estimation: Typically, a Life Care Plan prepared by a medical or rehabilitation expert 
+serves as the foundation for projecting future medical needs. In this case, we have [relied on the 
+life care plan by [Name], or compiled a list of future medical needs from medical expert 
+opinions]. The plan outlines various categories of future care, such as surgeries, therapies, 
+medications, medical equipment, home health aide services, and other necessities, along with their 
+current costs and recommended frequency/duration. These current costs provide a starting point (in 
+today’s dollars). However, it’s important to adjust these costs for the future because a life care plan 
+itself “doesn’t account for changes in prices over time”weaver.com. Medical costs historically 
+tend to rise faster than general inflation, so simply summing up today’s costs over future years would 
+underestimate the true needweaver.com. Therefore, we project future cost growth (inflation) and 
+then discount those future costs to present value. 
+ 
+Cost Data Sources: We use reliable sources for cost data to ensure the prices are customary and 
+reasonable. For instance, life care planners and economists often utilize Medicare rates, private 
+insurance data, and local healthcare provider costs as benchmarksfulginiti-law.com. In this 
+analysis, the unit costs for medical services and items (e.g. hourly therapy rates, cost of a 
+wheelchair, etc.) are drawn from sources such as current Medicare fee schedules, the U.S. Bureau 
+of Labor Statistics Medical Price Index, and vendor quotes for medical equipment. All sources 
+and pricing are documented for transparencyfulginiti-law.com. Using these data, each element of the 
+life care plan is assigned a base cost. 
+ 
+
+=== PAGE 9 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+9  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+Inflation and Growth Assumptions: Future medical and caregiving costs are expected to increase 
+over time due to medical inflation. We have assumed a medical cost inflation rate of __% per year 
+for healthcare services, which is based on historical averages of the Medical Care component of the 
+Consumer Price Index and other healthcare inflation studiesweaver.com. Notably, medical inflation 
+has often outpaced general inflation, though it has shown a moderating trend in recent 
+decadesweaver.com. Because different categories of care can have different inflation dynamics (for 
+example, prescription drug costs vs. general medical services), category-specific growth rates may 
+be applied where appropriate. In absence of specific forecasts (as no official long-term medical CPI 
+forecast is universally acceptedweaver.com), our chosen rate reflects a conservative blend of past 
+trends and current economic conditions. We will periodically note if certain items have unique 
+inflation (for example, home health aide wages might be tied to wage inflation which could differ from 
+medical equipment cost inflation). 
+ 
+Life Expectancy and Duration of Care: [Plaintiff]’s future medical needs are projected over __ 
+years, consistent with [his/her] life expectancy (or the plan’s stated duration if shorter). If the life care 
+plan or medical experts anticipate a reduced life expectancy due to the injury, the projections are 
+accordingly limited to that timeframe. Otherwise, we use the standard life expectancy (e.g. to age 
+__) as the horizon for ongoing care. Some life care items might be needed only for a finite period – 
+for example, [therapy] for 2 more years, or [certain medication] until a condition stabilizes – and 
+those are accounted for only in those years. Other items (like attendant care or medical supplies) 
+may be needed for life. By summing the needs each year through the end of the planning horizon, 
+we capture the full stream of future costs. 
+ 
+Method of Calculation: The future medical costs are calculated in several steps: 
+1. Current Annual Cost: Determine the current annual cost of each element in the care plan. 
+For example, if [Plaintiff] needs weekly physical therapy sessions at $100 each, that’s $5,200 
+per year currently. If home nursing care is needed 8 hours a day at $20/hour, that’s $58,400 
+per year currently, and so on for each item. 
+2. Inflation to Future Years: Project these costs forward year by year using the medical 
+inflation rate. For instance, the $5,200/year therapy cost would be assumed to grow by ~% 
+each year (so next year $5,200×1. = $____, etc.). This yields a schedule of future nominal 
+costs for each year for each category of expense. 
+3. Apply Life Expectancy/Duration: Stop the projection in the year [Plaintiff] is expected to no 
+longer need or no longer be alive to require the service. In this case, projections run through 
+the year ____ based on life expectancy of __ more years. 
+4. Discount to Present Value: Each future year’s cost is discounted back to present value 
+using the selected discount rate (here, % as noted earlier). The present value factor for 
+year t (for example, 10 years out) is 1/(1+0.)^t. This accounts for the time value of money – 
+a cost 10 years from now is divided by approximately (1+0.__)^10 to translate it into today’s 
+dollarsphysicianlcp.com. 
+5. Summation: Sum all the discounted values for all future years and all categories. This sum 
+is the total present value of future medical costs. 
+ 
+Because this process can be voluminous with many items, economists often summarize by finding 
+an equivalent single growth rate and single discount rate for the entire plan or by grouping items. 
+In our case, a detailed year-by-year model has been constructed (see Exhibit [B] for a simplified 
+excerpt), and the aggregate result is reported. 
+ 
+Result – Present Value of Future Medical Costs: Based on the above, the total present value of 
+[Plaintiff]’s future medical and life care expenses is $________. This means that an upfront fund of 
+that amount, if invested at __% and used to pay for medical needs as they arise (with costs growing 
+at the assumed inflation rate), should be sufficient to cover all the future medical needs outlined for 
+[Plaintiff]fulginiti-law.com. 
+
+=== PAGE 10 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+10  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+ 
+For illustration, some major components are: 
+• 
+Surgeries: [If any, e.g. one-time future surgery at age __ costs $___ then, PV = $___]. 
+• 
+Therapies: [e.g. Physical therapy for 5 years, growing from $X to $Y per year, total PV = 
+$___]. 
+• 
+Medications: [e.g. lifelong medication costing $/year now, PV = $]. 
+• 
+Home Care: [e.g. attendant care $/year for __ years, PV = $]. 
+• 
+Equipment: [e.g. wheelchair replacements every 5 years at $___ each, PV = $___]. 
+(These figures are summed into the total above.) 
+ 
+Essentially, we asked: “How much money is needed today to pay for all of [Plaintiff]’s future medical 
+bills, as those bills come due?” To answer that, we first figured out what those future bills are likely to 
+be – considering that prices for medical care rise over time – and then we calculated how big of a 
+bank account is required now so that, with interest earnings, it can pay all those bills. This ensures 
+[Plaintiff] can afford the care [he/she] needs each year in the future. Economists do this by 
+combining the life care planner’s roadmap of care with financial math: we inflate costs to future 
+years and then discount them back to present. It’s a balancing act – inflation pushes future costs 
+higher, discounting pulls them back lower – to find the exact right amount today. The involvement of 
+an economist is important because, while doctors identify what care is needed, they don’t usually 
+calculate how costs change over decadesweaver.com. Our approach, which is commonly used by 
+forensic economists, ensures the plaintiff will be “made whole” for medical expenses – no more and 
+no lessweaver.com. 
+ 
+Loss of Household Services 
+ 
+Beyond wages, an injury or death often impairs the ability of an individual to contribute to household 
+and family upkeep. Loss of household services refers to the economic value of the domestic 
+chores, childcare, and other household tasks that [Plaintiff] can no longer perform (or performs at a 
+reduced level) due to the injury. In a wrongful death case, it represents the services the decedent 
+would have provided to their family. These services have real economic value because the family 
+must either hire someone to perform them or forego them. Examples include cleaning, cooking, 
+laundry, home maintenance, yard work, grocery shopping, driving children or elderly family 
+members, and even less tangible contributions like guidance or companionship. 
+ 
+Valuation Methodology: The most widely accepted approach to valuing lost household services is 
+the replacement cost methodtheknowlesgroup.org. This method asks: What would it cost to hire 
+someone to perform the services that are now lost? The steps involved are: 
+• 
+Identify Services and Time: Determine which household tasks [Plaintiff] was responsible 
+for (pre-injury) and how much time [he/she] spent on each. This can be obtained through 
+interviews, depositions, or time-use surveys. In our analysis, [Plaintiff] (and/or family 
+members) indicated that before the incident [he/she] spent approximately __ hours per week 
+on tasks such as [list tasks]. To corroborate and avoid reliance solely on memory, we 
+reference data from the American Time Use Survey (ATUS), which provides average time 
+people spend on various household activities by age, gender, and family 
+situationtheknowlesgroup.org. For instance, according to national data, an average [person 
+of Plaintiff’s demographics] might spend about __ hours/week on housework, __ on 
+cooking, __ on childcare, etc. These figures are in line with the estimates given for [Plaintiff]’s 
+contributions. 
+• 
+Pre- vs Post-Incident Comparison: Establish how [Plaintiff]’s ability to perform these 
+services changed due to the injury. In a personal injury scenario, [Plaintiff] may still do some 
+tasks but less efficiently or not at all. For example, [Plaintiff] can no longer do heavy cleaning 
+or yardwork and does minimal cooking, resulting in a reduction of __ hours/week of services. 
+In a death case, 100% of decedent’s services are lost to the family. The lost services are 
+
+=== PAGE 11 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+11  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+essentially the difference: hours of services [Plaintiff] would have provided minus hours 
+[he/she] can still provide nowtheknowlesgroup.org. In our case, that lost amount is __ hours 
+per week (or __ hours per year). 
+• 
+Assign Replacement Wage Rates: For each category of service, assign a market hourly 
+rate that one would have to pay to replace that service. Sources for these rates include the 
+Bureau of Labor Statistics Occupational Employment Statistics (for roles like 
+housecleaner, cook, childcare worker, home maintenance labor, etc.)theknowlesgroup.org, 
+or specialized surveys. For simplicity, sometimes an average housekeeping rate is used for 
+general housework, and specific rates for specialized tasks (e.g., the rate for a gardener for 
+yardwork, a tutor for helping children with homework, etc., if those services were significant). 
+In this analysis, we used rates of approximately $__ per hour for general household chores 
+(based on local domestic worker wages) and $__ per hour for childcare (based on childcare 
+worker wages in our region), etc. Many economists rely on compilations like the Dollar Value 
+of a Day reporttheknowlesgroup.org, which utilizes time-use data and wage rates to value 
+daily household production. Indeed, the Dollar Value of a Day (2020) study indicates, for 
+example, that a [35-44]-year-old female spends about 22.6 hours/week on household 
+production valued at about $16/hour on averagetheknowlesgroup.org. These benchmarks 
+support our chosen figures. 
+• 
+Calculate Annual Value: Multiply the lost hours for each task by the corresponding 
+replacement wage rate to get an annual dollar value of lost services. For example, if 
+[Plaintiff] can no longer do 10 hours/week of housecleaning and the market rate is $15/hour, 
+that’s 520 hours/year * $15 = $7,800 per year for cleaning services. Summing across all 
+categories (cleaning, cooking, errands, yardwork, childcare, etc.) yields [Plaintiff]’s total 
+annual lost household services at current rates. Suppose this comes to $___ per year in 
+2025 dollars. 
+• 
+Projection and Present Value: Just like with other future losses, we consider how long 
+these services would have been provided and adjust for inflation/discount. Typically, one 
+would project the annual value of services over [Plaintiff]’s remaining life expectancy (or a 
+relevant period such as until children reach adulthood for childcare tasks, etc.). Some 
+services might decrease in later years (e.g., an elderly person might naturally slow down on 
+heavy chores). In our assessment, we assume [Plaintiff] would have continued providing 
+substantial household services at the current level for at least __ years, gradually tapering by 
+about __% in advanced age. We apply an inflation rate (perhaps general inflation of ~2-3% 
+for service wages) to future service values, and then discount back to present value at the 
+same __% rate used elsewhere. The methodology parallels the wage loss calculation – 
+essentially treating lost household services like a stream of “lost income” to the household. 
+ 
+Alternatively, an even simpler approach (for transparency to a jury) is to take the annual loss value 
+and multiply by a life expectancy factor, then discount. For example, if the annual loss is $10,000 
+and life expectancy is 30 years, one might compute a present value factor (say about 20.0 at a 3% 
+net discount) and arrive at ~$200,000. Our more granular calculation yields a present value of lost 
+household services of $________. 
+ 
+This means the family has lost services equivalent to having to spend that lump sum to replace what 
+[Plaintiff] would have done at home over the yearstheknowlesgroup.org. 
+ 
+In plain terms, we looked at what [Plaintiff] did around the home – cooking, cleaning, etc. – and 
+asked, “If someone had to be hired to do all that, what would it cost?” That cost is a real economic 
+loss. We found that before the injury, [Plaintiff] contributed a lot of valuable work at home (worth 
+about $___ per year). Now, due to the injury, those contributions are reduced (or gone entirely). The 
+family might have to pay for services like housekeeping, lawn care, childcare, or just suffer the loss 
+of those services. We calculated the dollar value of that gap. For example, if [Plaintiff] used to do 15 
+hours of housework and childcare a week, and now can do none, that’s 15 hours × a market wage 
+
+=== PAGE 12 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+12  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+(say $15/hour) = $225 per week, or about $11,700 per year of lost services. We did this for each 
+category of task. Then we considered how many years this loss will continue. Using life expectancy 
+(or the number of years until [Plaintiff] might otherwise have been unable to do these things due to 
+age), we projected the total loss. Finally, we converted those future lost services into a present dollar 
+figure, just like we did for lost wages and medical costs, to ensure the value is equivalent in today’s 
+terms. 
+ 
+We also acknowledge there are different ways to value household services. Some economists 
+consider the opportunity cost method (valuing the time at the person’s own potential wage) or the 
+“housekeeper replacement” method (which might use a single domestic worker wage for 
+everything)theknowlesgroup.org. However, the specialist replacement cost approach we used 
+(valuing each service at its market rate) is generally regarded as the most accurate and courtroom-
+tested method. It’s rooted in actual economic behavior – what families actually pay if they outsource 
+taskstheknowlesgroup.org. Furthermore, our valuation is comprehensive: it includes not just 
+traditional chores but also acknowledges that [Plaintiff] provided intangible but real services like 
+parenting and guidance. In fact, literature in forensic economics suggests that companionship and 
+guidance services provided within a household can and should be valued by comparing them to 
+equivalent services (like a companion or counselor) on the marketresearchgate.net. These are often 
+overlooked, but their exclusion could undervalue the loss significantlyresearchgate.net. In this case, 
+if relevant (e.g., [Plaintiff] can no longer provide companionship to a disabled spouse or mentorship 
+to a child), we have included a reasonable valuation for those aspects as well, using proxy costs (for 
+example, the cost of a companion care service, or tutoring/mentoring rates) as appropriate. 
+ 
+Summary of Household Services Loss: [Plaintiff]’s lost household services are estimated at 
+$________ in present value. This reflects an annual loss of roughly $___ per year over __ years, 
+discounted to today. Details by category (annual value lost): Cooking $; Cleaning $; Laundry $; 
+Home maintenance $; Driving/Errands $; Childcare $; Other $___ (totals $___/year). (See Exhibit 
+[C] for the breakdown and present value calculation.) This loss is an economic damage just like lost 
+wages – it represents either extra expenses the family must bear to replace [Plaintiff]’s contributions, 
+or a diminution in their standard of living if those services go undone. 
+ 
+Total Economic Loss Summary 
+Combining the categories detailed above, the total economic damages sustained by [Plaintiff] (or 
+[Plaintiff’s] family in case of death) are summarized as follows: 
+• 
+Past Lost Earnings: $________ (from [Date] to [Date], including wages and benefits, plus 
+any applicable interest). 
+• 
+Future Lost Earning Capacity: $________ (present value of [__] years of lost earnings and 
+benefits, post-tax, through end of worklife). 
+• 
+Future Medical Care Costs: $________ (present value of lifetime medical and care 
+expenses related to the injury). 
+• 
+Loss of Household Services: $________ (present value of lost household contributions 
+over life expectancy). 
+• 
+Other Losses: $________ ([Include any other quantified economic losses, e.g., lost 
+pension, lost business income, if applicable]). 
+Total Economic Loss: $____________ (present value as of [Date]). 
+ 
+(The above figures are illustrative placeholders. In an actual report, they would reflect the computed 
+values from each section. A table or summary exhibit often accompanies this to show the 
+components clearly.) 
+ 
+These figures represent the economic damages only. They do not include non-economic damages 
+like pain and suffering or loss of consortium, which are typically determined by the trier of fact and 
+
+=== PAGE 13 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+13  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+not calculated by an economist. The totals provided are the amounts that would compensate for the 
+financial losses incurred, assuming the assumptions and projections hold true. 
+It’s important to note that each component has been calculated with care to avoid overlap or double-
+counting. For example, if home nursing care was accounted for in the life care plan, we do not 
+separately count it under household services. Likewise, if [Plaintiff]’s future earnings loss assumes 
+retirement at 67, we did not assume any household services beyond that age beyond normal life 
+expectancy of providing such services (although retirees do still provide household services, but 
+earnings loss ended at retirement, which is separate). All such considerations have been 
+consistently applied. 
+ 
+A reasonable degree of economic certainty underlies these calculations. While actual future 
+events may differ from projections (longevity, inflation, etc.), the methodology applied is standard 
+and produces a best estimate grounded in data. If new information becomes available (for instance, 
+an updated medical prognosis or revised life care plan), the figures may be revisited. However, 
+based on currently available information, the totals above are our best assessment of the economic 
+losses in this case. 
+ 
+Conclusion 
+ 
+In conclusion, [Plaintiff] has suffered substantial economic losses as a direct result of [the incident]. 
+Using reliable economic methods and data, we have quantified the losses in earnings, medical 
+expenses, and household services, in present value terms. This report provides a comprehensive 
+and Daubert-compliant analysis, with each assumption and step grounded in published economic 
+principles and tailored to [Plaintiff]’s situation. 
+ 
+It is my professional opinion, based on a reasonable degree of economic certainty, that the totals 
+summarized above fairly and accurately represent the economic damages in this matter. The 
+methodologies used are consistent with those employed by forensic economists nationwide and 
+have been tested for reasonableness and accuracy. All calculations can be found in the attached 
+exhibits, and all sources and references used are documented 
+hereinresearchgate.netresearchgate.nettheknowlesgroup.org, ensuring transparency. 
+ 
+I certify that I have applied the principles and methods reliably to the facts of this case, and I have 
+not omitted any material information that would alter the conclusions. I will be prepared to testify to 
+these findings at trial and explain the basis for each component of the loss. 
+ 
+Thank you for the opportunity to provide this analysis. Please refer to the following sections for my 
+qualifications, materials considered, and other required disclosures. 
+ 
+Respectfully submitted, 
+<br> _________________________________<br> **[Expert Name], [Degree]** <br> Forensic 
+Economist<br> Date: **[Month Day, Year]**  
+ 
+ 
+ 
+ 
+ 
+
+=== PAGE 14 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+14  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+ 
+Expert Qualifications and Disclosures 
+Qualifications: [Expert Name] is a forensic economist with [X] years of experience in economic 
+damage assessment. [He/She] holds a [Ph.D./M.A.] in Economics from [University] and is a 
+[position, e.g. Professor Emeritus of Economics at … / partner at … Economic Consulting]. 
+[Expert Name] has provided expert economic testimony in approximately [Y] cases over the past [Z] 
+years, in both state and federal courts, and has authored peer-reviewed research in areas of 
+economic loss analysis. A full Curriculum Vitae is attached in Appendix A, detailing [his/her] 
+qualifications, publications, and prior case experience. Highlights include: 
+• 
+Specialized expertise in personal injury and wrongful death damages, having completed 
+hundreds of economic loss appraisals. 
+• 
+Membership in professional organizations such as the National Association of Forensic 
+Economics. 
+• 
+Publications, such as “[Title of relevant publication]”, in journals like the Journal of 
+Forensic Economics, demonstrating the methods used in this report have been subject to 
+academic scrutiny (e.g., Frank Tinari’s methodology referenced in this report is published in 
+such literatureresearchgate.net). 
+• 
+A history of courtroom testimony that meets Daubert standards; no instance of [Expert 
+Name]’s testimony has been excluded on Daubert grounds. 
+ 
+Materials Considered: A comprehensive list of all documents and data [Expert Name] relied upon 
+is provided at the beginning of this report and can be cross-referenced in Appendix B. This includes 
+legal pleadings, medical records, employment records, life care plans, depositions (especially of 
+[Plaintiff] and family members regarding household contributions), government data sources, and 
+published economic studies (some of which are cited throughout this report). [Expert Name] has also 
+considered any reports by other experts in this case (e.g., vocational rehabilitation reports, medical 
+expert opinions) to ensure the economic analysis is consistent with those foundations. 
+ 
+Assumptions: Key assumptions made in the analysis are explicitly listed in the “Key Assumptions” 
+section of this report. These assumptions were necessary to project future losses (e.g., inflation 
+rates, worklife expectancy, etc.) and are based on the best available evidence or standard practice. 
+They are clearly identified so that if any assumption is later deemed inaccurate, the calculations can 
+be adjusted accordingly. None of the assumptions were chosen arbitrarily; each is supported by data 
+or literature (for example, inflation and discount rates align with historical 
+trendsweaver.comweaver.com, worklife expectancy is drawn from statistical tables, etc.). The effect 
+of assumptions has been discussed (see “Known Error Rates & Uncertainty” in methodology), 
+demonstrating how variation in assumptions might impact the results. 
+ 
+Exhibits: The following exhibits are attached to this report to illustrate and support the calculations: 
+• 
+Exhibit A: Lost Earnings Calculation Schedules (Past and Future) – a table showing year-
+by-year earnings, adjustments (tax, etc.), and present value factors for [Plaintiff]’s wage loss. 
+• 
+Exhibit B: Life Care Plan Cost Projection – a summary of future medical costs by 
+year/category, with inflation and present value discounting. 
+• 
+Exhibit C: Household Services Valuation – a breakdown of hours, rates, and present value 
+of lost household services. 
+• 
+(Additional exhibits can be listed as needed, such as graphs of wage growth vs. discount, 
+mortality tables, or any demonstrative charts used.) 
+• 
+Appendix A: Curriculum Vitae of [Expert Name]. 
+• 
+Appendix B: List of Documents and Data Considered (if not fully listed in the report body). 
+• 
+Appendix C: Reference List / Glossary (if separate). 
+ 
+Each exhibit is prepared by me or under my direct supervision. The figures in the exhibits tie directly 
+to the amounts quoted in the report. 
+
+=== PAGE 15 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+15  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+Prior Testimony and Compensation: In compliance with Rule 26 (or relevant disclosure rules), 
+[Expert Name] will provide: 
+• 
+A list of cases in which [he/she] has testified as an expert at trial or deposition in the past 
+four years (available in Appendix D or upon request). 
+• 
+A statement of compensation for the study and testimony in this case (e.g., [Expert Name] is 
+being compensated at a rate of $___ per hour for analysis and report preparation, and $___ 
+per hour for testimony, plus direct expenses; compensation is not contingent on the outcome 
+of this case). 
+ 
+Declaration: I declare that the foregoing is true and correct to the best of my knowledge. I 
+understand that my duty is to the court and the truth, and I have complied with that duty in preparing 
+this report. 
+ 
+Glossary of Terms  
+• 
+Present Value (PV): The amount of money needed today to equal a future stream of 
+payments, considering interest and inflationphysicianlcp.com. (E.g., if you need $1,000 in 
+five years and you can earn interest at 3%, the present value is about $863 today, because 
+$863 growing at 3% for five years becomes ~$1,000.) 
+• 
+Discount Rate: The interest rate used to convert future values into present value. It reflects 
+the rate of return on safe investments (often based on government bonds for damage 
+calculationsweaver.com). A higher discount rate means a lower present value for future 
+amounts. 
+• 
+Inflation Rate: The rate at which prices increase over time. Medical inflation refers to the 
+rate of increase in healthcare costs, which historically has been higher than general 
+inflationweaver.com. We use inflation rates to project how wages or medical costs will grow 
+in the future. 
+• 
+Worklife Expectancy: The expected number of years a person will be active in the labor 
+force, given their age, gender, and other factors. It accounts for probabilities of employment, 
+unemployment, retirement, and mortality. It’s not just a fixed age of retirement, but a 
+statistical average of years remaining in work. 
+• 
+Life Expectancy: The average number of additional years a person is expected to live, 
+based on mortality tables (e.g., a 50-year-old might have a life expectancy of ~30 more 
+years). It provides the time frame for projecting future losses like medical costs or household 
+services. 
+• 
+Fringe Benefits: Non-wage compensation from employment, such as employer-paid health 
+insurance, retirement contributions, bonuses, and other benefits. These are added to salary 
+to reflect total compensation lostphysicianlcp.com. 
+• 
+Personal Consumption: In wrongful death economics, the portion of the decedent’s income 
+they would have spent on themselves. This is deducted because that portion is not a loss to 
+surviving dependents (who only lose the portion that would have been used for their 
+benefit)researchgate.net. 
+• 
+Life Care Plan: A document usually prepared by a medical or rehabilitation expert outlining 
+an injured person’s future medical and supportive care needs, along with the frequency and 
+cost of each item or service, typically for their lifetime. Economists use this as a basis to 
+calculate future medical costsweaver.com. 
+• 
+Replacement Cost Method: A way to value lost services by determining how much it would 
+cost to replace those services in the markettheknowlesgroup.org. For household services, it 
+uses market wage rates for domestic tasks. 
+• 
+Opportunity Cost Method: An alternative valuation of lost services or time, based on the 
+idea of valuing someone’s lost time at what they could have earned (their wage rate). This 
+method is less commonly used in court for household services, as it can overestimate value 
+for someone who wasn’t going to be working during that time. 
+
+=== PAGE 16 ===
+LAST, FIRST 
+ DRAFT-WORK PRODUCT PRIVILEGE 
+16  
+Kincaid Wolstein Vocational and Rehabilitation Services 
+1 University Plaza, Suite 302, Hackensack, New Jersey 07601 
+ 
+ 
+ 
+www.KWVRS.com ■ Info@KWVRS.Com ■ Tel: (201) 343-0700 
+ 
+ 
+ 
+ 
+• 
+Daubert Standard: The legal standard from Daubert v. Merrell Dow Pharmaceuticals (1993) 
+used to evaluate whether an expert’s testimony is admissible, focusing on the reliability and 
+relevance of the methods used. Factors include peer review, error rates, testability, and 
+general acceptance in the fieldcfes.comcfes.com. 
+• 
+Reasonable Degree of Economic Certainty: A phrase indicating that the expert’s opinions 
+are given with a high level of confidence, based on known data and sound methodology. It 
+doesn’t mean absolute certainty, but that the conclusions are well-founded and more likely 
+than not to be accurate. 
+ 
+(The glossary above is provided to clarify technical terms for the reader. It should be adjusted to 
+include any other terms that may be unfamiliar to a lay audience in the context of the report.) 
+ 
+References:  
+• 
+Tinari, F.D. (2016). “Demonstrating Lost Earnings: Algebraic vs. Spreadsheet Method.” The 
+Earnings Analyst, 15, 21–32. (Explains the algebraic approach to lost earnings calculations 
+and its advantages in clarityresearchgate.netresearchgate.net.) 
+• 
+Tinari, F.D. (1998). “Household Services: Toward a More Comprehensive Measure.” Journal 
+of Forensic Economics, 11(3), 253–265. (Discusses inclusion of companionship and 
+guidance in household services valuationresearchgate.net.) 
+• 
+Zauner, H.A., Kozlowski, K., & Rella, J. (2025). "The Economist’s Role in Forecasting 
+Medical Costs in Personal Injury Disputes." Weaver Insights (May 20, 2025). (Covers 
+methodology for projecting life care plan costs, use of medical inflation, and 
+discountingweaver.comweaver.com.) 
+• 
+The Knowles Group (2023). "Calculating Damages for Loss of Household Services." 
+(Describes methods and data sources for household services valuation, including time-use 
+data and replacement cost approachtheknowlesgroup.orgtheknowlesgroup.org.) 
+• 
+[Any additional sources directly cited in text, e.g., BLS data, life tables, etc., can be listed 
+here for completeness.] 
+ 
+ 
