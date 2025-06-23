@@ -1,0 +1,543 @@
+/* Practice Areas Specific Styles */
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+    background: var(--light-bg);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.breadcrumb ol {
+    display: flex;
+    list-style: none;
+    font-size: 0.875rem;
+    gap: 0.5rem;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: "›";
+    margin-left: 0.5rem;
+    color: var(--light-text);
+}
+
+.breadcrumb a {
+    color: var(--light-text);
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-color);
+}
+
+.breadcrumb .active {
+    color: var(--dark-text);
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.page-header .lead {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* Practice Areas Content */
+.practice-areas-content {
+    padding: 4rem 0;
+}
+
+.intro-content {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.intro-content p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+}
+
+/* Practice Area Grid */
+.practice-area-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.practice-area-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.practice-area-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    border-color: var(--primary-color);
+}
+
+.practice-area-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.practice-area-card:hover::before {
+    transform: scaleX(1);
+}
+
+.icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: var(--light-bg);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.practice-icon {
+    font-size: 2rem;
+}
+
+.practice-area-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark-text);
+}
+
+.practice-area-card > p {
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.practice-highlights {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.practice-highlights li {
+    padding: 0.5rem 0;
+    padding-left: 1.75rem;
+    position: relative;
+    color: var(--dark-text);
+    font-size: 0.925rem;
+}
+
+.practice-highlights li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.practice-meta {
+    margin-bottom: 1.5rem;
+}
+
+.jurisdiction {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    background: var(--light-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Benefits Grid */
+.additional-content {
+    margin-top: 4rem;
+}
+
+.additional-content h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.benefit {
+    text-align: center;
+    padding: 2rem;
+}
+
+.benefit h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.benefit p {
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+/* Practice CTA */
+.practice-cta {
+    background: var(--light-bg);
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.practice-cta h2 {
+    margin-bottom: 1rem;
+}
+
+.practice-cta p {
+    font-size: 1.125rem;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+}
+
+/* Active Navigation State */
+.nav-menu .active > a {
+    color: var(--primary-color);
+}
+
+/* Individual Practice Area Page Styles */
+.practice-hero {
+    background: var(--light-bg);
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.practice-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark-text);
+}
+
+.practice-hero .meta {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.925rem;
+    color: var(--light-text);
+}
+
+/* Practice Content Styles */
+.practice-content {
+    padding: 4rem 0;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.overview-section p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+}
+
+.sidebar .quick-facts {
+    background: var(--light-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.sidebar .quick-facts h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.sidebar .quick-facts ul {
+    list-style: none;
+}
+
+.sidebar .quick-facts li {
+    padding: 0.5rem 0;
+    font-size: 0.925rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar .quick-facts li:last-child {
+    border-bottom: none;
+}
+
+.sidebar .quick-facts strong {
+    color: var(--dark-text);
+}
+
+.contact-card {
+    background: var(--primary-color);
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.contact-card h4 {
+    margin-bottom: 1rem;
+}
+
+.contact-card p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.contact-card .btn {
+    background: white;
+    color: var(--primary-color);
+}
+
+.services-detailed {
+    margin-bottom: 3rem;
+}
+
+.services-detailed h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.service-item {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.service-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.service-item p {
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.service-item ul {
+    list-style: none;
+}
+
+.service-item li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--dark-text);
+    font-size: 0.925rem;
+}
+
+.service-item li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.methodology-section {
+    background: var(--light-bg);
+    padding: 3rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+}
+
+.methodology-section h2 {
+    margin-bottom: 1.5rem;
+}
+
+.methodology-section > p {
+    font-size: 1.125rem;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.method-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.method-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.method-item ul {
+    list-style: none;
+}
+
+.method-item li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 0.925rem;
+}
+
+.method-item li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.faq-section {
+    margin-bottom: 3rem;
+}
+
+.faq-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.faq-item {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.faq-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+.faq-item p {
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+.related-practices {
+    margin-bottom: 3rem;
+}
+
+.related-practices h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.related-card {
+    display: block;
+    background: var(--light-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    color: inherit;
+}
+
+.related-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.related-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.related-card p {
+    color: var(--light-text);
+    font-size: 0.925rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .practice-area-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .page-header .lead {
+        font-size: 1.125rem;
+    }
+
+    .practice-area-card {
+        padding: 2rem;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .methodology-grid,
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+}

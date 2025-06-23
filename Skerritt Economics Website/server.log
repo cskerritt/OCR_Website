@@ -1,0 +1,20 @@
+::1 - - [22/Jun/2025 21:27:09] "GET / HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:27:09] "GET /js/main.js HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:27:09] "GET /css/styles.css HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:27:09] code 404, message File not found
+::1 - - [22/Jun/2025 21:27:09] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [22/Jun/2025 21:27:43] "GET /resources/ HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:27:46] "GET /contact/ HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:27:46] "GET /css/contact.css HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:27:46] "GET /js/contact.js HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:39:28] "GET /contact/ HTTP/1.1" 304 -
+::1 - - [22/Jun/2025 21:39:28] "GET /css/styles.css HTTP/1.1" 304 -
+::1 - - [22/Jun/2025 21:39:28] "GET /css/contact.css HTTP/1.1" 304 -
+::1 - - [22/Jun/2025 21:39:28] "GET /js/main.js HTTP/1.1" 304 -
+::1 - - [22/Jun/2025 21:39:28] "GET /js/contact.js HTTP/1.1" 304 -
+::1 - - [22/Jun/2025 21:39:32] "GET /practice-areas/employment/ HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:39:32] "GET /css/practice-areas.css HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:39:48] "GET /practice-areas/personal-injury/ HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:40:07] "GET / HTTP/1.1" 304 -
+::1 - - [22/Jun/2025 21:40:09] "GET /services/ HTTP/1.1" 200 -
+::1 - - [22/Jun/2025 21:40:09] "GET /css/services.css HTTP/1.1" 200 -

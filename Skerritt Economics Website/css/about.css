@@ -1,0 +1,482 @@
+/* About Page Styles */
+
+/* About Hero */
+.about-hero {
+    background: var(--light-bg);
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-text);
+}
+
+.hero-text .title {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text .lead {
+    font-size: 1.125rem;
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+.placeholder-image {
+    width: 100%;
+    height: 300px;
+    background: var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light-text);
+    font-size: 1.125rem;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.professional-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* About Content */
+.about-content {
+    padding: 4rem 0;
+}
+
+.about-section {
+    margin-bottom: 4rem;
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--dark-text);
+}
+
+.about-section p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+}
+
+/* Credentials Section */
+.credentials-section {
+    background: var(--light-bg);
+    padding: 3rem;
+    border-radius: 8px;
+    margin-bottom: 4rem;
+}
+
+.credentials-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.credential-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.credential-category ul {
+    list-style: none;
+}
+
+.credential-category li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    line-height: 1.6;
+}
+
+.credential-category li:last-child {
+    border-bottom: none;
+}
+
+.credential-category li strong {
+    color: var(--dark-text);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.credential-category li em {
+    color: var(--light-text);
+    font-size: 0.925rem;
+}
+
+/* Timeline Section */
+.timeline-section {
+    margin-bottom: 4rem;
+}
+
+.timeline-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 100px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 91px;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px var(--border-color);
+}
+
+.year {
+    width: 80px;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.125rem;
+    padding-top: 0.25rem;
+}
+
+.milestone {
+    flex: 1;
+    margin-left: 2rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.milestone h4 {
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+}
+
+.milestone p {
+    color: var(--light-text);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Publications Section */
+.publications-section {
+    background: var(--light-bg);
+    padding: 3rem;
+    border-radius: 8px;
+    margin-bottom: 4rem;
+}
+
+.publications-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+}
+
+.activity-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.activity-category ul {
+    list-style: none;
+}
+
+.activity-category li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    line-height: 1.6;
+}
+
+.activity-category li:last-child {
+    border-bottom: none;
+}
+
+.activity-category li strong {
+    color: var(--dark-text);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.activity-category li em {
+    color: var(--light-text);
+    font-style: italic;
+}
+
+/* Court Section */
+.court-section {
+    margin-bottom: 4rem;
+}
+
+.court-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.court-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.court-category {
+    background: white;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.court-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.court-category ul {
+    list-style: none;
+}
+
+.court-category li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--dark-text);
+}
+
+.court-category li:before {
+    content: "⚖️";
+    position: absolute;
+    left: 0;
+    font-size: 0.875rem;
+}
+
+.testimony-stats {
+    background: var(--light-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.testimony-stats h3 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat .number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.stat .label {
+    font-size: 0.925rem;
+    color: var(--light-text);
+    text-align: center;
+}
+
+/* Memberships Section */
+.memberships-section {
+    margin-bottom: 4rem;
+}
+
+.memberships-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.memberships-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.membership {
+    background: white;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.membership:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.membership h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+.membership p {
+    color: var(--light-text);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Philosophy Section */
+.philosophy-section {
+    background: var(--light-bg);
+    padding: 3rem;
+    border-radius: 8px;
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.philosophy-section h2 {
+    margin-bottom: 2rem;
+}
+
+.philosophy-section blockquote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--dark-text);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.philosophy-section cite {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* About CTA */
+.about-cta {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.about-cta h2 {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.about-cta p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+/* Active Navigation State */
+.nav-menu .active {
+    color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .credentials-grid,
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-item::before {
+        left: 21px;
+    }
+
+    .year {
+        width: 60px;
+    }
+
+    .milestone {
+        margin-left: 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .court-grid,
+    .memberships-grid {
+        grid-template-columns: 1fr;
+    }
+}
