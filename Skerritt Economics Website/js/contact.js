@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.disabled = true;
             
             // Submit form via fetch API to Formspree
-            fetch('https://formspree.io/f/xpwzgvke', {
+            fetch('https://formspree.io/f/mnnvgzgd', {
                 method: 'POST',
                 body: formData,
                 headers: {
