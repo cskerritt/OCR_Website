@@ -4,7 +4,7 @@ A professional-grade web application for batch PDF OCR processing using OCRmyPDF
 
 ## 🌐 Live Demo
 
-**[View Demo on GitHub Pages](https://yourusername.github.io/OCR_Website/)**
+**[View Demo on GitHub Pages](https://cskerritt.github.io/OCR_Website/)**
 
 *Note: The GitHub Pages version is a demonstration of the interface. For full OCR functionality, deploy the application on a server using the instructions below.*
 
@@ -26,7 +26,7 @@ A professional-grade web application for batch PDF OCR processing using OCRmyPDF
 ### Option 1: Docker Deployment (Recommended)
 
 ```bash
-git clone https://github.com/yourusername/OCR_Website.git
+git clone https://github.com/cskerritt/OCR_Website.git
 cd OCR_Website
 docker-compose up -d
 ```
@@ -39,7 +39,7 @@ sudo apt-get update
 sudo apt-get install -y python3 python3-pip tesseract-ocr ghostscript
 
 # Clone and setup
-git clone https://github.com/yourusername/OCR_Website.git
+git clone https://github.com/cskerritt/OCR_Website.git
 cd OCR_Website
 pip3 install -r requirements.txt
 
@@ -82,7 +82,7 @@ python3 app.py
 
 2. Clone this repository:
    ```
-   git clone https://github.com/yourusername/OCR_Website.git
+   git clone https://github.com/cskerritt/OCR_Website.git
    cd OCR_Website
    ```
 
