@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Pro - PDF OCR Processing Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold text-blue-600">OCR Pro</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="{{ url_for('login') }}" class="text-gray-700 hover:text-gray-900">Login</a>
+                    <a href="{{ url_for('register') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold sm:text-5xl md:text-6xl">
+                    Professional PDF OCR Processing
+                </h1>
+                <p class="mt-6 text-xl max-w-3xl mx-auto">
+                    Convert scanned PDFs into searchable documents with our advanced OCR technology. Process multiple files at once with enterprise-grade accuracy.
+                </p>
+                <div class="mt-10">
+                    <a href="{{ url_for('register') }}" class="bg-white text-blue-600 px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100 transition-colors">
+                        Start Free Trial
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900">
+                    Why Choose OCR Pro?
+                </h2>
+            </div>
+            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="text-xl font-medium text-gray-900 mb-4">Bulk Processing</div>
+                    <p class="text-gray-600">Process multiple PDF files simultaneously with our efficient batch processing system.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="text-xl font-medium text-gray-900 mb-4">High Accuracy</div>
+                    <p class="text-gray-600">Advanced OCR technology ensures accurate text recognition and preservation of document layout.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="text-xl font-medium text-gray-900 mb-4">Secure & Private</div>
+                    <p class="text-gray-600">Your documents are processed securely and deleted immediately after processing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900">
+                    Simple, Transparent Pricing
+                </h2>
+            </div>
+            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Free Tier -->
+                <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-gray-100">
+                    <div class="text-2xl font-bold text-gray-900 mb-4">Free Trial</div>
+                    <div class="text-4xl font-bold text-gray-900 mb-6">$0</div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            10 Free Credits
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Basic Support
+                        </li>
+                    </ul>
+                    <a href="{{ url_for('register') }}" class="block text-center bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
+                        Get Started
+                    </a>
+                </div>
+                <!-- Pay As You Go -->
+                <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-blue-200">
+                    <div class="text-2xl font-bold text-gray-900 mb-4">Pay As You Go</div>
+                    <div class="text-4xl font-bold text-gray-900 mb-6">$0.10<span class="text-lg">/credit</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Buy Credits as Needed
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Priority Support
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Bulk Discounts Available
+                        </li>
+                    </ul>
+                    <a href="{{ url_for('register') }}" class="block text-center bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
+                        Choose Plan
+                    </a>
+                </div>
+                <!-- Premium -->
+                <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-blue-500">
+                    <div class="text-2xl font-bold text-gray-900 mb-4">Premium</div>
+                    <div class="text-4xl font-bold text-gray-900 mb-6">$49<span class="text-lg">/month</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Unlimited Processing
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Priority Processing
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            24/7 Premium Support
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            API Access
+                        </li>
+                    </ul>
+                    <a href="{{ url_for('register') }}" class="block text-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                        Get Premium
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Features</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Privacy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Terms</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2024 OCR Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

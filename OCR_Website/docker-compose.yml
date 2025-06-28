@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  flask:
+    build: .
+    container_name: ocr_flask
+    restart: always
+    environment:
+      - FLASK_ENV=production
+      - FLASK_APP=app.py
+      - SECRET_KEY=${SECRET_KEY:-default_secret_key_for_development}
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///instance/users.db}
+      - MAIL_SERVER=${MAIL_SERVER:-smtp.gmail.com}
+      - MAIL_PORT=${MAIL_PORT:-587}
+      - MAIL_USE_TLS=${MAIL_USE_TLS:-true}
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - MAIL_DEFAULT_SENDER=${MAIL_DEFAULT_SENDER}
+    volumes:
+      - ./uploads:/app/uploads
+      - ./ocr_cache:/app/ocr_cache
+      - ./instance:/app/instance
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  caddy:
+    image: caddy:2.7
+    container_name: ocr_caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./logs/caddy:/var/log/caddy
+    depends_on:
+      - flask
+
+volumes:
+  caddy_data:
+  caddy_config:

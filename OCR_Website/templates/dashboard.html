@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - OCR Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        .drop-zone {
+            border: 2px dashed #4a5568;
+            transition: all 0.3s ease;
+        }
+        .drop-zone.dragover {
+            border-color: #4299e1;
+            background-color: #ebf8ff;
+        }
+        .file-item {
+            transition: all 0.3s ease;
+        }
+        .file-item:hover {
+            background-color: #f7fafc;
+        }
+        .instruction-step {
+            transition: all 0.3s ease;
+        }
+        .instruction-step.active {
+            background-color: #f0fff4;
+            border-color: #48bb78;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold text-blue-600">OCR Pro</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600">
+                        {% if user.subscription_status == 'premium' %}
+                            Premium User
+                        {% else %}
+                            Credits: {{ user.credits }}
+                        {% endif %}
+                    </span>
+                    <a href="{{ url_for('logout') }}" class="text-gray-700 hover:text-gray-900">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Process PDF Files</h2>
+                    
+                    <!-- Instructions -->
+                    <div class="mb-6 space-y-4">
+                        <div id="step1" class="instruction-step p-3 border rounded-lg">
+                            <div class="flex items-start">
+                                <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</div>
+                                <div>
+                                    <h3 class="font-medium">Select Your Files</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Drag and drop multiple PDF files into the upload area below, or click "Select Files".</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step2" class="instruction-step p-3 border rounded-lg">
+                            <div class="flex items-start">
+                                <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</div>
+                                <div>
+                                    <h3 class="font-medium">Review Your Selection</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Check the list of selected files and required credits.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step3" class="instruction-step p-3 border rounded-lg">
+                            <div class="flex items-start">
+                                <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</div>
+                                <div>
+                                    <h3 class="font-medium">Process Files</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Click "Process Files" to start OCR processing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upload Area -->
+                    <div id="drop-zone" class="drop-zone rounded-lg p-8 text-center mb-6">
+                        <div class="text-gray-600">
+                            <svg class="mx-auto h-12 w-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                            </svg>
+                            <p class="text-lg font-medium">Drag and drop your PDF files here</p>
+                            <p class="text-sm mt-2">or</p>
+                            <label for="file-input" class="mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600 transition-colors">
+                                Select Files
+                            </label>
+                            <input id="file-input" type="file" multiple accept=".pdf" class="hidden">
+                            <p class="text-sm text-gray-500 mt-2">You can select multiple files at once</p>
+                        </div>
+                    </div>
+
+                    <!-- File List -->
+                    <div id="file-list" class="space-y-2 mb-6">
+                        <!-- Files will be listed here -->
+                    </div>
+
+                    <!-- Process Button -->
+                    <div class="flex justify-center">
+                        <button id="process-btn" class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors" disabled>
+                            Process Files
+                        </button>
+                    </div>
+
+                    <!-- Progress -->
+                    <div id="progress" class="mt-6 hidden">
+                        <div class="text-center text-gray-600 mb-2">Processing files...</div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Errors -->
+                    <div id="error-section" class="mt-6 hidden">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <strong class="font-bold">Processing Errors:</strong>
+                            <div id="error-list" class="mt-2"></div>
+                        </div>
+                    </div>
+
+                    <!-- Download -->
+                    <div id="download-section" class="mt-6 text-center hidden">
+                        <a id="download-link" href="#" class="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
+                            Download Processed Files
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1 space-y-8">
+                <!-- Account Status -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Account Status</h3>
+                    {% if user.subscription_status == 'premium' %}
+                        <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-4">
+                            <p class="font-medium">Premium Account</p>
+                            <p class="text-sm mt-1">Unlimited processing</p>
+                        </div>
+                    {% else %}
+                        <div class="bg-blue-100 text-blue-800 p-4 rounded-lg mb-4">
+                            <p class="font-medium">Credits Available</p>
+                            <p class="text-2xl font-bold mt-1">{{ user.credits }}</p>
+                        </div>
+                        <button onclick="showBuyCreditsModal()" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors mb-2">
+                            Buy More Credits
+                        </button>
+                        <button onclick="showSubscribeModal()" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
+                            Upgrade to Premium
+                        </button>
+                    {% endif %}
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Recent Activity</h3>
+                    <div class="space-y-4">
+                        {% for usage in usage_history %}
+                            <div class="border-b pb-4 last:border-b-0 last:pb-0">
+                                <p class="text-sm text-gray-600">{{ usage.timestamp.strftime('%Y-%m-%d %H:%M') }}</p>
+                                <p class="font-medium">Processed {{ usage.files_processed }} files</p>
+                                {% if usage.credits_used > 0 %}
+                                    <p class="text-sm text-gray-600">Used {{ usage.credits_used }} credits</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buy Credits Modal -->
+    <div id="buy-credits-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
+                <h3 class="text-xl font-bold mb-4">Buy Credits</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 border rounded hover:bg-gray-50 cursor-pointer" onclick="buyCredits(100)">
+                        <div>
+                            <p class="font-medium">100 Credits</p>
+                            <p class="text-sm text-gray-600">Best for small batches</p>
+                        </div>
+                        <p class="font-bold">$10</p>
+                    </div>
+                    <div class="flex items-center justify-between p-4 border rounded hover:bg-gray-50 cursor-pointer" onclick="buyCredits(500)">
+                        <div>
+                            <p class="font-medium">500 Credits</p>
+                            <p class="text-sm text-gray-600">Most popular</p>
+                        </div>
+                        <p class="font-bold">$45</p>
+                    </div>
+                    <div class="flex items-center justify-between p-4 border rounded hover:bg-gray-50 cursor-pointer" onclick="buyCredits(1000)">
+                        <div>
+                            <p class="font-medium">1000 Credits</p>
+                            <p class="text-sm text-gray-600">Best value</p>
+                        </div>
+                        <p class="font-bold">$80</p>
+                    </div>
+                </div>
+                <button onclick="hideBuyCreditsModal()" class="mt-6 w-full bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscribe Modal -->
+    <div id="subscribe-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
+                <h3 class="text-xl font-bold mb-4">Upgrade to Premium</h3>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                    <h4 class="font-bold text-lg mb-2">Premium Benefits</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Unlimited PDF Processing
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Priority Processing
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            24/7 Premium Support
+                        </li>
+                    </ul>
+                </div>
+                <button onclick="subscribe()" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors mb-2">
+                    Subscribe - $49/month
+                </button>
+                <button onclick="hideSubscribeModal()" class="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const stripe = Stripe('{{ config.STRIPE_PUBLIC_KEY }}');
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+        const processBtn = document.getElementById('process-btn');
+        const progress = document.getElementById('progress');
+        const progressBar = document.getElementById('progress-bar');
+        const downloadSection = document.getElementById('download-section');
+        const downloadLink = document.getElementById('download-link');
+        const steps = document.querySelectorAll('.instruction-step');
+        let files = [];
+
+        function updateStepHighlight(stepNumber) {
+            steps.forEach((step, index) => {
+                if (index + 1 <= stepNumber) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+        }
+
+        // File Upload Handlers
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+
+        dropZone.addEventListener('drop', handleDrop, false);
+        fileInput.addEventListener('change', handleFiles, false);
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight(e) {
+            dropZone.classList.add('dragover');
+        }
+
+        function unhighlight(e) {
+            dropZone.classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const droppedFiles = dt.files;
+            handleFiles({ target: { files: droppedFiles } });
+        }
+
+        function handleFiles(e) {
+            updateStepHighlight(1);
+            const newFiles = [...e.target.files].filter(file => file.type === 'application/pdf');
+            files = [...files, ...newFiles];
+            updateFileList();
+            processBtn.disabled = files.length === 0;
+            if (files.length > 0) {
+                updateStepHighlight(2);
+            }
+        }
+
+        function updateFileList() {
+            fileList.innerHTML = files.map((file, index) => `
+                <div class="file-item flex items-center justify-between p-3 border rounded">
+                    <span class="text-gray-700">${file.name}</span>
+                    <button onclick="removeFile(${index})" class="text-red-500 hover:text-red-700">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function removeFile(index) {
+            files.splice(index, 1);
+            updateFileList();
+            processBtn.disabled = files.length === 0;
+            if (files.length === 0) {
+                updateStepHighlight(1);
+            }
+        }
+
+        processBtn.addEventListener('click', async () => {
+            if (files.length === 0) return;
+
+            updateStepHighlight(3);
+            const formData = new FormData();
+            files.forEach(file => formData.append('files[]', file));
+
+            progress.classList.remove('hidden');
+            processBtn.disabled = true;
+            downloadSection.classList.add('hidden');
+            document.getElementById('error-section').classList.add('hidden');
+
+            try {
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    downloadLink.href = data.download_url;
+                    downloadSection.classList.remove('hidden');
+                    
+                    // Update credits display if not premium
+                    const creditsDisplay = document.querySelector('.credits-display');
+                    if (creditsDisplay && data.credits_remaining !== undefined) {
+                        creditsDisplay.textContent = data.credits_remaining;
+                    }
+                    
+                    if (data.errors && data.errors.length > 0) {
+                        const errorSection = document.getElementById('error-section');
+                        const errorList = document.getElementById('error-list');
+                        errorList.innerHTML = data.errors.map(error => `<div class="mb-1">• ${error}</div>`).join('');
+                        errorSection.classList.remove('hidden');
+                    }
+                } else {
+                    const errorSection = document.getElementById('error-section');
+                    const errorList = document.getElementById('error-list');
+                    errorList.innerHTML = `<div class="mb-1">• ${data.error || 'An unknown error occurred'}</div>`;
+                    errorSection.classList.remove('hidden');
+                }
+            } catch (error) {
+                const errorSection = document.getElementById('error-section');
+                const errorList = document.getElementById('error-list');
+                errorList.innerHTML = `<div class="mb-1">• An error occurred while processing the files</div>`;
+                errorSection.classList.remove('hidden');
+            } finally {
+                progress.classList.add('hidden');
+                processBtn.disabled = false;
+            }
+        });
+
+        // Modal Functions
+        function showBuyCreditsModal() {
+            document.getElementById('buy-credits-modal').classList.remove('hidden');
+        }
+
+        function hideBuyCreditsModal() {
+            document.getElementById('buy-credits-modal').classList.add('hidden');
+        }
+
+        function showSubscribeModal() {
+            document.getElementById('subscribe-modal').classList.remove('hidden');
+        }
+
+        function hideSubscribeModal() {
+            document.getElementById('subscribe-modal').classList.add('hidden');
+        }
+
+        async function buyCredits(amount) {
+            try {
+                const response = await fetch('/buy_credits', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `amount=${amount}`
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+                
+                const { error } = await stripe.redirectToCheckout({
+                    sessionId: data.id
+                });
+                
+                if (error) {
+                    alert(error.message);
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+            }
+        }
+
+        async function subscribe() {
+            try {
+                const response = await fetch('/subscribe', {
+                    method: 'POST'
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+                
+                const { error } = await stripe.redirectToCheckout({
+                    sessionId: data.id
+                });
+                
+                if (error) {
+                    alert(error.message);
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html> 

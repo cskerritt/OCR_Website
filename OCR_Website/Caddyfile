@@ -1,0 +1,39 @@
+{
+    # Global Caddy settings
+    email your-email@example.com
+}
+
+# Replace yourdomain.com with your actual domain
+yourdomain.com {
+    # Enable HTTPS with automatic certificate from Let's Encrypt
+    tls {
+        protocols tls1.2 tls1.3
+    }
+
+    # Set security headers
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Content-Security-Policy "upgrade-insecure-requests"
+    }
+
+    # Reverse proxy to the Flask application
+    reverse_proxy flask:5000 {
+        # Health check
+        health_path /
+        health_interval 30s
+        health_timeout 5s
+        health_status 200
+    }
+
+    # Log all requests
+    log {
+        output file /var/log/caddy/access.log
+        format json
+    }
+
+    # Enable gzip compression
+    encode gzip
+} 

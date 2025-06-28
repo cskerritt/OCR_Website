@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF OCR Processor</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <meta name="description" content="A web application for OCR processing PDF files using OCRmyPDF. Upload your PDFs and get searchable text in your documents.">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold text-gray-800">PDF OCR Processor</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    {% if current_user.is_authenticated %}
+                        <span class="text-gray-600">Welcome, {{ current_user.username }}!</span>
+                        <a href="{{ url_for('dashboard') }}" class="text-blue-600 hover:text-blue-800">Dashboard</a>
+                        <a href="{{ url_for('logout') }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="text-blue-600 hover:text-blue-800">Login</a>
+                        <a href="{{ url_for('register') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="max-w-4xl mx-auto px-4 py-4">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' if category == 'danger' else 'info' }} mb-4 p-4 rounded-lg
+                        {% if category == 'success' %}bg-green-100 border-green-400 text-green-700
+                        {% elif category == 'danger' %}bg-red-100 border-red-400 text-red-700
+                        {% else %}bg-blue-100 border-blue-400 text-blue-700{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">OCR Processing Tool</h2>
+
+            <!-- Instructions Panel -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-700">How to Use</h2>
+                <div class="space-y-4">
+                    <div id="step1" class="instruction-step p-3 border rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</div>
+                            <div>
+                                <h3 class="font-medium">Select Your Files</h3>
+                                <p class="text-gray-600 text-sm mt-1">Drag and drop multiple PDF files into the upload area below, or click "Select Files". You can upload multiple files at once.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step2" class="instruction-step p-3 border rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</div>
+                            <div>
+                                <h3 class="font-medium">Review Your Selection</h3>
+                                <p class="text-gray-600 text-sm mt-1">Check the list of selected files. Remove any files you don't want to process by clicking the X button next to them.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step3" class="instruction-step p-3 border rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</div>
+                            <div>
+                                <h3 class="font-medium">Process Files</h3>
+                                <p class="text-gray-600 text-sm mt-1">Click the "Process Files" button to start OCR processing. Wait for processing to complete - this may take a few minutes depending on the number and size of files.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step4" class="instruction-step p-3 border rounded-lg">
+                        <div class="flex items-start">
+                            <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">4</div>
+                            <div>
+                                <h3 class="font-medium">Download Results</h3>
+                                <p class="text-gray-600 text-sm mt-1">Once processing is complete, click the "Download Processed Files" button to get your OCR'ed PDFs as a zip file.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Upload Area -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div id="drop-zone" class="drop-zone rounded-lg p-8 text-center mb-6">
+                    <div class="text-gray-600">
+                        <svg class="mx-auto h-12 w-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                        </svg>
+                        <p class="text-lg font-medium">Drag and drop your PDF files here</p>
+                        <p class="text-sm mt-2">or</p>
+                        <label for="file-input" class="mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600 transition-colors">
+                            Select Files
+                        </label>
+                        <input id="file-input" type="file" multiple accept=".pdf" class="hidden">
+                        <p class="text-sm text-gray-500 mt-2">You can select multiple files at once</p>
+                        <p class="text-sm text-gray-500 mt-1">Maximum combined size: 1.5GB</p>
+                    </div>
+                </div>
+
+                <div id="file-list" class="space-y-2 mb-6">
+                    <!-- Files will be listed here -->
+                </div>
+
+                <div class="flex justify-center">
+                    <button id="process-btn" class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors" disabled>
+                        Process Files
+                    </button>
+                </div>
+
+                <div id="progress" class="mt-6 hidden">
+                    <div class="text-center text-gray-600 mb-2">Processing files...</div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+
+                    <!-- File Progress Indicator -->
+                    <div id="file-progress" class="mt-3 text-center text-sm text-gray-600 hidden">
+                        Processing file <span id="current-file-index">0</span>/<span id="total-files">0</span>:
+                        <span id="current-filename" class="font-medium"></span>
+                        <div class="mt-1">
+                            Time elapsed: <span id="time-elapsed">00:00</span>
+                        </div>
+                    </div>
+
+                    <!-- Timeout Warning -->
+                    <div id="timeout-warning" class="mt-3 p-2 bg-yellow-100 border-yellow-300 border text-yellow-800 rounded hidden">
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                            <span>Processing is taking longer than expected. Large files may take several minutes to complete.</span>
+                        </div>
+                        <div class="mt-2 text-center">
+                            <button id="cancel-btn" class="text-red-600 hover:text-red-800 underline">Cancel Processing</button>
+                        </div>
+                    </div>
+
+                    <!-- New Log Display Section -->
+                    <div id="log-container" class="mt-4 border rounded-lg p-2 bg-gray-50">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-medium text-gray-700">Processing Logs</h3>
+                            <div class="flex items-center">
+                                <label class="text-xs text-gray-500 mr-2">Auto-scroll</label>
+                                <input type="checkbox" id="auto-scroll" checked class="form-checkbox h-4 w-4 text-blue-600">
+                            </div>
+                        </div>
+                        <div id="log-display" class="font-mono text-sm bg-gray-800 text-green-400 p-3 rounded h-64 overflow-y-auto">
+                            <div class="log-entry">Starting process...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="error-section" class="mt-6 hidden">
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold">Processing Errors:</strong>
+                        <div id="error-list" class="mt-2"></div>
+                    </div>
+                </div>
+
+                <div id="download-section" class="mt-6 text-center hidden">
+                    <div id="page-count-info" class="mb-4 p-3 bg-blue-50 text-blue-700 rounded-lg">
+                        <p><strong>Total Pages:</strong> <span id="total-pages">0</span></p>
+                        <div id="file-pages-list" class="mt-2 text-sm text-left"></div>
+                    </div>
+                    <div id="optimization-info" class="mb-4 p-3 bg-green-50 text-green-700 rounded-lg hidden">
+                        <p><strong>Processing Optimizations:</strong></p>
+                        <div class="mt-2 text-sm text-left">
+                            <div><span id="cached-files">0</span> files loaded from cache</div>
+                            <div><span id="optimized-files">0</span> large files optimized</div>
+                            <div>Parallel processing: <span id="cpu-cores">0</span> CPU cores used</div>
+                        </div>
+                    </div>
+                    <a id="download-link" href="#" class="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
+                        Download Processed Files
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer with Additional Info -->
+            <div class="mt-6 text-center text-gray-600 text-sm">
+                <p>This is the free version of our PDF OCR Processor.</p>
+                <p class="mt-2">Looking for more features? Check out our <a href="/saas" class="text-blue-500 hover:text-blue-600">Premium Version</a> with unlimited processing and advanced features.</p>
+                <div class="mt-4 border-t pt-3 flex justify-center space-x-4">
+                    <button id="clear-cache-btn" class="text-sm text-gray-600 hover:text-red-600">
+                        Clear Processing Cache
+                    </button>
+                    <button id="dark-mode-toggle" class="text-sm text-gray-600 hover:text-blue-600">
+                        🌙 Dark Mode
+                    </button>
+                    <div id="cache-message" class="mt-2 text-xs hidden"></div>
+                </div>
+                <div class="mt-4 text-xs text-gray-500">
+                    Version 1.1.0 - <a href="https://github.com/yourusername/OCR_Website" class="hover:text-blue-500">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add estimated time remaining element -->
+    <div id="estimated-time-container" class="fixed bottom-4 right-4 bg-white p-3 rounded-lg shadow-lg hidden">
+        <div class="text-sm">
+            <span class="font-medium">Estimated time remaining:</span>
+            <span id="estimated-time-remaining">Calculating...</span>
+        </div>
+    </div>
+
+    <!-- JavaScript files -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/processing.js') }}"></script>
+</body>
+</html>
