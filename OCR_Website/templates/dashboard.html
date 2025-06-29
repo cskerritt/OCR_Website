@@ -67,8 +67,8 @@
                             <div class="flex items-start">
                                 <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</div>
                                 <div>
-                                    <h3 class="font-medium">Select Your Files</h3>
-                                    <p class="text-gray-600 text-sm mt-1">Drag and drop multiple PDF files into the upload area below, or click "Select Files".</p>
+                                    <h3 class="font-medium">Select Your Files or Folders</h3>
+                                    <p class="text-gray-600 text-sm mt-1">Drag and drop PDF files or entire folders into the upload area below, or use "Select Files" for individual files or "Select Folder" for entire directories.</p>
                                 </div>
                             </div>
                         </div>
@@ -98,13 +98,19 @@
                             <svg class="mx-auto h-12 w-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                             </svg>
-                            <p class="text-lg font-medium">Drag and drop your PDF files here</p>
+                            <p class="text-lg font-medium">Drag and drop your PDF files or folders here</p>
                             <p class="text-sm mt-2">or</p>
-                            <label for="file-input" class="mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600 transition-colors">
-                                Select Files
-                            </label>
+                            <div class="mt-4 space-x-4">
+                                <label for="file-input" class="inline-block bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600 transition-colors">
+                                    Select Files
+                                </label>
+                                <label for="folder-input" class="inline-block bg-green-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-green-600 transition-colors">
+                                    Select Folder
+                                </label>
+                            </div>
                             <input id="file-input" type="file" multiple accept=".pdf" class="hidden">
-                            <p class="text-sm text-gray-500 mt-2">You can select multiple files at once</p>
+                            <input id="folder-input" type="file" webkitdirectory directory multiple class="hidden">
+                            <p class="text-sm text-gray-500 mt-2">Select individual files or entire folders containing PDFs</p>
                         </div>
                     </div>
 
@@ -265,6 +271,7 @@
         const stripe = Stripe('{{ config.STRIPE_PUBLIC_KEY }}');
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
+        const folderInput = document.getElementById('folder-input');
         const fileList = document.getElementById('file-list');
         const processBtn = document.getElementById('process-btn');
         const progress = document.getElementById('progress');
@@ -300,6 +307,7 @@
 
         dropZone.addEventListener('drop', handleDrop, false);
         fileInput.addEventListener('change', handleFiles, false);
+        folderInput.addEventListener('change', handleFiles, false);
 
         function preventDefaults(e) {
             e.preventDefault();
@@ -322,26 +330,61 @@
 
         function handleFiles(e) {
             updateStepHighlight(1);
-            const newFiles = [...e.target.files].filter(file => file.type === 'application/pdf');
-            files = [...files, ...newFiles];
+            const newFiles = [...e.target.files].filter(file => 
+                file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')
+            );
+            
+            // Add files with their relative paths for folder structure display
+            const filesToAdd = newFiles.map(file => ({
+                file: file,
+                path: file.webkitRelativePath || file.name,
+                name: file.name,
+                size: file.size
+            }));
+            
+            files = [...files, ...filesToAdd];
             updateFileList();
             processBtn.disabled = files.length === 0;
             if (files.length > 0) {
                 updateStepHighlight(2);
             }
+            
+            // Clear the input values to allow re-selection of the same folder/files
+            e.target.value = '';
         }
 
         function updateFileList() {
-            fileList.innerHTML = files.map((file, index) => `
-                <div class="file-item flex items-center justify-between p-3 border rounded">
-                    <span class="text-gray-700">${file.name}</span>
-                    <button onclick="removeFile(${index})" class="text-red-500 hover:text-red-700">
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
+            const totalSize = files.reduce((sum, fileObj) => sum + fileObj.size, 0);
+            const totalSizeMB = (totalSize / (1024 * 1024)).toFixed(2);
+            
+            const fileListHTML = files.map((fileObj, index) => {
+                const fileSizeMB = (fileObj.size / (1024 * 1024)).toFixed(2);
+                const displayPath = fileObj.path.length > 50 ? '...' + fileObj.path.slice(-47) : fileObj.path;
+                
+                return `
+                    <div class="file-item flex items-center justify-between p-3 border rounded hover:bg-gray-50">
+                        <div class="flex-1 min-w-0">
+                            <div class="text-gray-900 font-medium truncate">${fileObj.name}</div>
+                            ${fileObj.path !== fileObj.name ? `<div class="text-gray-500 text-sm truncate">${displayPath}</div>` : ''}
+                            <div class="text-gray-400 text-xs">${fileSizeMB} MB</div>
+                        </div>
+                        <button onclick="removeFile(${index})" class="text-red-500 hover:text-red-700 ml-2 flex-shrink-0">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+            
+            const summaryHTML = files.length > 0 ? `
+                <div class="bg-blue-50 p-3 rounded-lg mb-4">
+                    <div class="text-blue-800 font-medium">${files.length} PDF files selected</div>
+                    <div class="text-blue-600 text-sm">Total size: ${totalSizeMB} MB</div>
                 </div>
-            `).join('');
+            ` : '';
+            
+            fileList.innerHTML = summaryHTML + fileListHTML;
         }
 
         function removeFile(index) {
@@ -358,7 +401,7 @@
 
             updateStepHighlight(3);
             const formData = new FormData();
-            files.forEach(file => formData.append('files[]', file));
+            files.forEach(fileObj => formData.append('files[]', fileObj.file));
 
             progress.classList.remove('hidden');
             processBtn.disabled = true;

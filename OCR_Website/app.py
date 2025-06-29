@@ -60,7 +60,7 @@ import secrets
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secrets.token_hex(16))
 
 # Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///instance/users.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///users.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Mail configuration
@@ -90,7 +90,83 @@ os.makedirs(app.config['CACHE_FOLDER'], exist_ok=True)
 os.makedirs('instance', exist_ok=True)
 
 # User model
-class User(db.Model, UserMixin):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(20), unique=True, nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    password_hash = db.Column(db.String(60), nullable=False)\n    is_active = db.Column(db.Boolean, default=True)\n    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())\n\n    def __repr__(self):\n        return f\"User('{self.username}', '{self.email}')\"\n\n@login_manager.user_loader\ndef load_user(user_id):\n    return User.query.get(int(user_id))\n\n# Forms\nclass RegistrationForm(FlaskForm):\n    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])\n    email = StringField('Email', validators=[DataRequired(), Email()])\n    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])\n    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])\n    submit = SubmitField('Sign Up')\n\n    def validate_username(self, username):\n        user = User.query.filter_by(username=username.data).first()\n        if user:\n            raise ValidationError('That username is already taken. Please choose a different one.')\n\n    def validate_email(self, email):\n        user = User.query.filter_by(email=email.data).first()\n        if user:\n            raise ValidationError('That email is already taken. Please choose a different one.')\n\nclass LoginForm(FlaskForm):\n    email = StringField('Email', validators=[DataRequired(), Email()])\n    password = PasswordField('Password', validators=[DataRequired()])\n    remember = BooleanField('Remember Me')\n    submit = SubmitField('Sign In')\n\nclass RequestResetForm(FlaskForm):\n    email = StringField('Email', validators=[DataRequired(), Email()])\n    submit = SubmitField('Request Password Reset')\n\n    def validate_email(self, email):\n        user = User.query.filter_by(email=email.data).first()\n        if user is None:\n            raise ValidationError('There is no account with that email. You must register first.')\n\nclass ResetPasswordForm(FlaskForm):\n    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])\n    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])\n    submit = SubmitField('Reset Password')\n\n# Helper functions\ndef get_reset_token(user, expires_sec=1800):\n    s = URLSafeTimedSerializer(app.config['SECRET_KEY'])\n    return s.dumps({'user_id': user.id})\n\ndef verify_reset_token(token, expires_sec=1800):\n    s = URLSafeTimedSerializer(app.config['SECRET_KEY'])\n    try:\n        user_id = s.loads(token, max_age=expires_sec)['user_id']\n    except:\n        return None\n    return User.query.get(user_id)\n\ndef send_reset_email(user):\n    token = get_reset_token(user)\n    msg = Message('Password Reset Request',\n                  sender=app.config['MAIL_DEFAULT_SENDER'],\n                  recipients=[user.email])\n    msg.body = f'''To reset your password, visit the following link:\n{url_for('reset_token', token=token, _external=True)}\n\nIf you did not make this request then simply ignore this email and no changes will be made.\n'''\n    mail.send(msg)
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(60), nullable=False)
+    is_active = db.Column(db.Boolean, default=True)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}')"
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+# Forms
+class RegistrationForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Sign Up')
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError('That username is already taken. Please choose a different one.')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('That email is already taken. Please choose a different one.')
+
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Sign In')
+
+class RequestResetForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('There is no account with that email. You must register first.')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
+
+# Helper functions
+def get_reset_token(user, expires_sec=1800):
+    s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    return s.dumps({'user_id': user.id})
+
+def verify_reset_token(token, expires_sec=1800):
+    s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    try:
+        user_id = s.loads(token, max_age=expires_sec)['user_id']
+    except:
+        return None
+    return User.query.get(user_id)
+
+def send_reset_email(user):
+    token = get_reset_token(user)
+    msg = Message('Password Reset Request',
+                  sender=app.config['MAIL_DEFAULT_SENDER'],
+                  recipients=[user.email])
+    msg.body = f'''To reset your password, visit the following link:
+{url_for('reset_token', token=token, _external=True)}
+
+If you did not make this request then simply ignore this email and no changes will be made.
+'''
+    mail.send(msg)
 
 # Global variable to track processing status
 processing_status = {
@@ -298,7 +374,7 @@ def process_single_pdf(file_info):
 
     return result
 
-def process_pdfs(input_dir, timeout=1800):  # Default timeout of 30 minutes
+def process_pdfs(input_dir, file_path_mapping=None, timeout=1800):  # Default timeout of 30 minutes
     output_dir = tempfile.mkdtemp()
     processed_files = []
     errors = []
@@ -314,7 +390,7 @@ def process_pdfs(input_dir, timeout=1800):  # Default timeout of 30 minutes
     # Check if processing was canceled
     if processing_results.get('cancel_requested', False):
         logger.info("Processing canceled before starting OCR")
-        return [], output_dir, ["Processing canceled by user"], [], {'cpu_cores': 0}
+        return [], output_dir, ["Processing canceled by user"], [], {'cpu_cores': 0}, file_path_mapping
 
     # Determine the optimal number of processes to use
     max_workers = min(multiprocessing.cpu_count(), file_count, 4)  # Use up to 4 cores or number of files
@@ -331,7 +407,7 @@ def process_pdfs(input_dir, timeout=1800):  # Default timeout of 30 minutes
         # Check if processing was canceled
         if processing_results.get('cancel_requested', False):
             logger.info("Processing canceled while preparing files")
-            return [], output_dir, ["Processing canceled by user"], [], processing_stats
+            return [], output_dir, ["Processing canceled by user"], [], processing_stats, file_path_mapping
 
         input_path = os.path.join(input_dir, filename)
         output_path = os.path.join(output_dir, filename)
@@ -351,7 +427,7 @@ def process_pdfs(input_dir, timeout=1800):  # Default timeout of 30 minutes
             if processing_results.get('cancel_requested', False):
                 logger.info("Processing canceled during OCR processing")
                 executor.shutdown(wait=False)  # Try to shut down the executor without waiting
-                return processed_files, output_dir, ["Processing canceled by user"], results, processing_stats
+                return processed_files, output_dir, ["Processing canceled by user"], results, processing_stats, file_path_mapping
 
             arg = future_to_file[future]
             filename = arg[2]
@@ -380,7 +456,7 @@ def process_pdfs(input_dir, timeout=1800):  # Default timeout of 30 minutes
     processing_status['is_processing'] = False
 
     logger.info(f"Completed processing all files. Successful: {len(processed_files)}, Errors: {len(errors)}")
-    return processed_files, output_dir, errors, results, processing_stats
+    return processed_files, output_dir, errors, results, processing_stats, file_path_mapping
 
 def count_pdf_pages(pdf_path):
     """Count the number of pages in a PDF file."""
@@ -444,18 +520,43 @@ def process_files():
             shutil.rmtree(input_dir, ignore_errors=True)
             return jsonify({'error': 'No valid PDF files provided. Only PDF files are accepted.'}), 400
 
+        # Store original file paths for preserving folder structure
+        file_path_mapping = {}
+        
         for idx, file in enumerate(valid_files):
-            filename = secure_filename(file.filename)
-            file_path = os.path.join(input_dir, filename)
+            # Preserve original folder structure from webkitRelativePath
+            original_path = file.filename
+            filename = secure_filename(os.path.basename(file.filename))
+            
+            # Check if file includes folder structure
+            if '/' in original_path:
+                # Preserve folder structure
+                folder_parts = original_path.split('/')
+                # Secure all folder parts
+                secure_parts = [secure_filename(part) for part in folder_parts[:-1]]
+                secure_parts.append(filename)
+                
+                folder_path = os.path.join(input_dir, *secure_parts[:-1])
+                os.makedirs(folder_path, exist_ok=True)
+                file_path = os.path.join(input_dir, *secure_parts)
+                relative_path = os.path.join(*secure_parts)
+            else:
+                file_path = os.path.join(input_dir, filename)
+                relative_path = filename
+            
             file.save(file_path)
             file_size = os.path.getsize(file_path) / (1024 * 1024)  # Size in MB
-            logger.info(f"Saved file {idx+1}/{len(valid_files)}: {filename} ({file_size:.2f} MB)")
+            logger.info(f"Saved file {idx+1}/{len(valid_files)}: {relative_path} ({file_size:.2f} MB)")
 
+            # Store mapping for ZIP creation
+            file_path_mapping[file_path] = relative_path
+            
             # Count pages in the PDF
             page_count = count_pdf_pages(file_path)
             total_pages += page_count
             file_info.append({
                 'name': filename,
+                'path': relative_path,
                 'page_count': page_count,
                 'size_mb': round(file_size, 2)
             })
@@ -478,7 +579,7 @@ def process_files():
                     return
 
                 # Process PDFs - Note the additional return values
-                processed_files, output_dir, errors, results, processing_stats = process_pdfs(input_dir)
+                processed_files, output_dir, errors, results, processing_stats, original_mapping = process_pdfs(input_dir, file_path_mapping)
 
                 # Check if processing was canceled during PDF processing
                 if processing_results['cancel_requested']:
@@ -506,7 +607,20 @@ def process_files():
                 logger.info(f"Creating ZIP archive at {zip_path}")
                 with zipfile.ZipFile(zip_path, 'w') as zipf:
                     for file_path in processed_files:
-                        arcname = os.path.basename(file_path)
+                        # Find the corresponding input file to get original structure
+                        input_file_path = None
+                        for input_path in original_mapping:
+                            if os.path.basename(input_path) == os.path.basename(file_path):
+                                input_file_path = input_path
+                                break
+                        
+                        if input_file_path and input_file_path in original_mapping:
+                            # Use original folder structure
+                            arcname = original_mapping[input_file_path]
+                        else:
+                            # Fallback to just filename
+                            arcname = os.path.basename(file_path)
+                        
                         zipf.write(file_path, arcname)
                         logger.info(f"Added to zip: {arcname}")
 
