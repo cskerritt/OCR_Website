@@ -223,6 +223,25 @@ body {
     margin-bottom: 4px;
 }
 
+/* Folder upload styles */
+.file-path {
+    font-family: monospace;
+    opacity: 0.7;
+}
+
+.folder-summary {
+    background-color: #f3f4f6;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+/* Button group spacing */
+label[for="folder-input"] {
+    margin-left: 0.5rem;
+}
+
 /* GitHub Pages compatibility */
 .github-pages-info {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents Reviewed - {{ session.case_name }}</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #000;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+        }
+        .case-info {
+            margin-bottom: 30px;
+        }
+        .case-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .case-info td {
+            padding: 5px 10px;
+            border: 1px solid #000;
+        }
+        .case-info .label {
+            font-weight: bold;
+            background-color: #f0f0f0;
+            width: 150px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 30px 0 15px 0;
+            text-align: center;
+            text-decoration: underline;
+        }
+        .document-type {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            text-decoration: underline;
+        }
+        .document-list {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        .document-item {
+            margin-bottom: 8px;
+            page-break-inside: avoid;
+        }
+        .document-title {
+            font-weight: bold;
+        }
+        .document-details {
+            margin-left: 15px;
+            font-size: 12px;
+            color: #333;
+        }
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        .summary-table th,
+        .summary-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        .summary-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 40px;
+            border-top: 1px solid #000;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+        @media print {
+            body { margin: 20px; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Print Controls -->
+    <div class="no-print" style="margin-bottom: 20px; text-align: center; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+        <button onclick="window.print()" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+            Print Document
+        </button>
+        <button onclick="copyToClipboard()" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+            Copy to Clipboard
+        </button>
+        <a href="{{ url_for('review_session_details', session_id=session.id) }}" style="background-color: #6c757d; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+            Back to Review
+        </a>
+    </div>
+
+    <!-- Document Header -->
+    <div class="header">
+        <h1>DOCUMENTS REVIEWED</h1>
+    </div>
+
+    <!-- Case Information -->
+    <div class="case-info">
+        <table>
+            <tr>
+                <td class="label">Case Name:</td>
+                <td>{{ session.case_name }}</td>
+            </tr>
+            {% if session.case_number %}
+            <tr>
+                <td class="label">Case Number:</td>
+                <td>{{ session.case_number }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td class="label">Expert Witness:</td>
+                <td>{{ session.expert_name }}{% if session.expert_title %}, {{ session.expert_title }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td class="label">Review Date:</td>
+                <td>{{ session.review_date.strftime('%B %d, %Y') }}</td>
+            </tr>
+            <tr>
+                <td class="label">Total Documents:</td>
+                <td>{{ documents|length }} documents ({{ documents|sum(attribute='page_count') or 0 }} total pages)</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Documents by Type -->
+    <div class="section-title">DOCUMENTS REVIEWED BY CATEGORY</div>
+
+    {% for doc_type, type_documents in grouped_docs.items() %}
+        <div class="document-type">{{ doc_type }} ({{ type_documents|length }} documents)</div>
+        <div class="document-list">
+            {% for doc in type_documents %}
+                <div class="document-item">
+                    <div class="document-title">
+                        {{ loop.index }}. {{ doc.document_title or doc.original_filename }}
+                    </div>
+                    <div class="document-details">
+                        {% if doc.document_author %}Author: {{ doc.document_author }}{% endif %}
+                        {% if doc.document_date %} | Date: {{ doc.document_date.strftime('%m/%d/%Y') }}{% endif %}
+                        {% if doc.document_source %} | Source: {{ doc.document_source }}{% endif %}
+                        {% if doc.page_count %} | Pages: {{ doc.page_count }}{% endif %}
+                        {% if doc.file_path != doc.original_filename %} | Path: {{ doc.file_path }}{% endif %}
+                    </div>
+                    {% if doc.key_findings %}
+                        <div class="document-details">
+                            <strong>Key Findings:</strong> {{ doc.key_findings }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <!-- Summary Table -->
+    <div class="section-title">DOCUMENT SUMMARY</div>
+    <table class="summary-table">
+        <thead>
+            <tr>
+                <th>Document Type</th>
+                <th>Count</th>
+                <th>Total Pages</th>
+                <th>Date Range</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc_type, type_documents in grouped_docs.items() %}
+                {% set dates = type_documents|selectattr('document_date')|list %}
+                <tr>
+                    <td>{{ doc_type }}</td>
+                    <td>{{ type_documents|length }}</td>
+                    <td>{{ type_documents|sum(attribute='page_count') or 0 }}</td>
+                    <td>
+                        {% if dates %}
+                            {{ dates|min(attribute='document_date')|attr('document_date')|strftime('%m/%d/%Y') }} - 
+                            {{ dates|max(attribute='document_date')|attr('document_date')|strftime('%m/%d/%Y') }}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr style="font-weight: bold; background-color: #f0f0f0;">
+                <td>TOTAL</td>
+                <td>{{ documents|length }}</td>
+                <td>{{ documents|sum(attribute='page_count') or 0 }}</td>
+                <td>-</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <!-- Certification -->
+    <div class="footer">
+        <p>I certify that the above list represents all documents reviewed in connection with my expert analysis in this matter.</p>
+        <br><br>
+        <p>_________________________________</p>
+        <p>{{ session.expert_name }}{% if session.expert_title %}, {{ session.expert_title }}{% endif %}</p>
+        <p>Date: ________________</p>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            // Create a range and select the content
+            const range = document.createRange();
+            range.selectNode(document.body);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            
+            try {
+                // Copy the selected content
+                document.execCommand('copy');
+                alert('Document content copied to clipboard! You can now paste it into Word or another document.');
+            } catch (err) {
+                alert('Copy failed. Please use Ctrl+A then Ctrl+C to copy manually.');
+            }
+            
+            // Clear the selection
+            selection.removeAllRanges();
+        }
+    </script>
+</body>
+</html>

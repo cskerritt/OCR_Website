@@ -3,6 +3,7 @@
 // DOM elements
 const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('file-input');
+const folderInput = document.getElementById('folder-input');
 const fileList = document.getElementById('file-list');
 const processBtn = document.getElementById('process-btn');
 const progress = document.getElementById('progress');
@@ -80,6 +81,7 @@ function updateStepHighlight(stepNumber) {
 // Handle dropped files
 dropZone.addEventListener('drop', handleDrop, false);
 fileInput.addEventListener('change', handleFiles, false);
+folderInput.addEventListener('change', handleFolderSelect, false);
 
 function preventDefaults(e) {
     e.preventDefault();
@@ -94,10 +96,119 @@ function unhighlight(e) {
     dropZone.classList.remove('dragover');
 }
 
-function handleDrop(e) {
+async function handleDrop(e) {
     const dt = e.dataTransfer;
-    const droppedFiles = dt.files;
-    handleFiles({ target: { files: droppedFiles } });
+    const items = dt.items;
+    
+    if (items) {
+        // Use DataTransferItemList interface to access files and folders
+        const allFiles = [];
+        const promises = [];
+        
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            
+            if (item.kind === 'file') {
+                const entry = item.webkitGetAsEntry();
+                if (entry) {
+                    promises.push(traverseFileTree(entry, allFiles));
+                }
+            }
+        }
+        
+        // Wait for all files to be processed
+        await Promise.all(promises);
+        
+        // Filter for PDF files
+        const pdfFiles = allFiles.filter(file => 
+            file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')
+        );
+        
+        // Process the PDF files
+        if (pdfFiles.length > 0) {
+            processBatchFiles(pdfFiles, allFiles.length);
+        } else {
+            showError('No PDF files found in the dropped items.');
+        }
+    } else {
+        // Fallback for browsers that don't support items
+        handleFiles({ target: { files: dt.files } });
+    }
+}
+
+// Traverse directory tree to get all files
+async function traverseFileTree(item, allFiles, path = '') {
+    return new Promise((resolve) => {
+        if (item.isFile) {
+            item.file(file => {
+                // Add the relative path to the file object
+                file.relativePath = path + file.name;
+                allFiles.push(file);
+                resolve();
+            });
+        } else if (item.isDirectory) {
+            const dirReader = item.createReader();
+            const promises = [];
+            
+            const readEntries = () => {
+                dirReader.readEntries(entries => {
+                    if (entries.length > 0) {
+                        for (let entry of entries) {
+                            promises.push(traverseFileTree(entry, allFiles, path + item.name + '/'));
+                        }
+                        readEntries(); // Continue reading
+                    } else {
+                        Promise.all(promises).then(() => resolve());
+                    }
+                });
+            };
+            
+            readEntries();
+        }
+    });
+}
+
+// Process batch files with size checking
+function processBatchFiles(pdfFiles, totalFilesCount) {
+    updateStepHighlight(1);
+    
+    if (pdfFiles.length < totalFilesCount) {
+        const nonPdfCount = totalFilesCount - pdfFiles.length;
+        showError(`Found ${totalFilesCount} files. ${nonPdfCount} non-PDF files were skipped.`);
+    }
+    
+    // Check file size limit
+    const currentSize = files.reduce((total, file) => total + file.size, 0);
+    const newFilesSize = pdfFiles.reduce((total, file) => total + file.size, 0);
+    const totalSize = currentSize + newFilesSize;
+    const maxSize = 1.5 * 1024 * 1024 * 1024; // 1.5GB in bytes
+    
+    if (totalSize > maxSize) {
+        showError(`Total file size exceeds the 1.5GB limit. Current total: ${(totalSize / (1024 * 1024 * 1024)).toFixed(2)}GB`);
+        
+        // Only add files up to the limit
+        let availableSize = maxSize - currentSize;
+        let i = 0;
+        
+        while (i < pdfFiles.length && availableSize > 0) {
+            if (pdfFiles[i].size <= availableSize) {
+                files.push(pdfFiles[i]);
+                availableSize -= pdfFiles[i].size;
+            }
+            i++;
+        }
+    } else {
+        files = [...files, ...pdfFiles];
+    }
+    
+    // Update global reference
+    window.files = files;
+    
+    updateFileList();
+    processBtn.disabled = files.length === 0;
+    if (files.length > 0) {
+        updateStepHighlight(2);
+    }
 }
 
 // Make handleFiles available globally for demo override
@@ -147,12 +258,73 @@ window.handleFiles = function(e) {
     }
 }
 
+// Handle folder selection
+function handleFolderSelect(e) {
+    updateStepHighlight(1);
+    const folderFiles = [...e.target.files];
+    
+    // Filter for PDF files only from the folder
+    const newPdfFiles = folderFiles.filter(file => {
+        // Check if it's a PDF file
+        return file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+    });
+    
+    // Show folder structure information
+    if (newPdfFiles.length < folderFiles.length) {
+        const nonPdfCount = folderFiles.length - newPdfFiles.length;
+        showError(`Found ${folderFiles.length} files in folder. ${nonPdfCount} non-PDF files were skipped.`);
+    }
+    
+    // Check file size limit (1.5GB total)
+    const currentSize = files.reduce((total, file) => total + file.size, 0);
+    const newFilesSize = newPdfFiles.reduce((total, file) => total + file.size, 0);
+    const totalSize = currentSize + newFilesSize;
+    const maxSize = 1.5 * 1024 * 1024 * 1024; // 1.5GB in bytes
+    
+    if (totalSize > maxSize) {
+        showError(`Total file size exceeds the 1.5GB limit. Current total: ${(totalSize / (1024 * 1024 * 1024)).toFixed(2)}GB`);
+        
+        // Only add files up to the limit
+        let availableSize = maxSize - currentSize;
+        let i = 0;
+        
+        while (i < newPdfFiles.length && availableSize > 0) {
+            if (newPdfFiles[i].size <= availableSize) {
+                files.push(newPdfFiles[i]);
+                availableSize -= newPdfFiles[i].size;
+            }
+            i++;
+        }
+    } else {
+        files = [...files, ...newPdfFiles];
+    }
+    
+    // Update global reference for demo compatibility
+    window.files = files;
+    
+    updateFileList();
+    processBtn.disabled = files.length === 0;
+    if (files.length > 0) {
+        updateStepHighlight(2);
+        
+        // Show folder summary
+        const folderName = e.target.files[0]?.webkitRelativePath?.split('/')[0] || 'Selected folder';
+        console.log(`Loaded ${newPdfFiles.length} PDF files from "${folderName}"`);
+    }
+}
+
 function updateFileList() {
-    fileList.innerHTML = files.map((file, index) => `
+    fileList.innerHTML = files.map((file, index) => {
+        // Check if file has a folder path
+        const displayName = file.webkitRelativePath || file.name;
+        const folderPath = file.webkitRelativePath ? file.webkitRelativePath.substring(0, file.webkitRelativePath.lastIndexOf('/')) : '';
+        
+        return `
         <div class="file-item">
             <div>
-                <span class="file-name">${file.name}</span>
+                <span class="file-name">${displayName}</span>
                 <span class="file-size">(${formatFileSize(file.size)})</span>
+                ${folderPath ? `<span class="file-path text-xs text-gray-500 ml-2">[${folderPath}]</span>` : ''}
             </div>
             <button onclick="removeFile(${index})" class="btn-remove">
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +332,8 @@ function updateFileList() {
                 </svg>
             </button>
         </div>
-    `).join('');
+    `;
+    }).join('');
     
     // Add total size display if files exist
     if (files.length > 0) {

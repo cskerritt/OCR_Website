@@ -1,0 +1,10 @@
+2025-06-28 21:50:15 - INFO - Current cache size: 0.00MB, 0 files
+Starting server on port 64745
+ * Serving Flask app 'app'
+ * Debug mode: on
+2025-06-28 21:50:15 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:64745
+ * Running on http://192.168.0.242:64745
+2025-06-28 21:50:15 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-28 21:50:25 - INFO - 127.0.0.1 - - [28/Jun/2025 21:50:25] "GET / HTTP/1.1" 200 -

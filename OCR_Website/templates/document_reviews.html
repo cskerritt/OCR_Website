@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Reviews - OCR Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold text-blue-600">OCR Pro</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="{{ url_for('dashboard') }}" class="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                        <a href="{{ url_for('document_reviews') }}" class="text-blue-600 border-b-2 border-blue-600 px-3 py-2 rounded-md text-sm font-medium">Document Reviews</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="{{ url_for('logout') }}" class="text-gray-700 hover:text-gray-900">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mb-4 p-4 rounded-md {% if category == 'success' %}bg-green-100 text-green-700{% elif category == 'error' or category == 'danger' %}bg-red-100 text-red-700{% else %}bg-blue-100 text-blue-700{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">Expert Witness Document Reviews</h1>
+                <p class="text-gray-600 mt-2">Manage your case documents and generate professional expert witness reports</p>
+            </div>
+            <a href="{{ url_for('create_review_session') }}" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                New Review Session
+            </a>
+        </div>
+
+        {% if sessions %}
+            <!-- Sessions Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for session in sessions %}
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900">{{ session.case_name }}</h3>
+                                {% if session.case_number %}
+                                    <p class="text-gray-600">Case #{{ session.case_number }}</p>
+                                {% endif %}
+                            </div>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                                {{ session.documents|length }} docs
+                            </span>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600">Expert: {{ session.expert_name }}</p>
+                            {% if session.expert_title %}
+                                <p class="text-sm text-gray-500">{{ session.expert_title }}</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="text-sm text-gray-500 mb-4">
+                            Created: {{ session.created_at.strftime('%B %d, %Y') }}
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <a href="{{ url_for('review_session_details', session_id=session.id) }}" 
+                               class="flex-1 bg-blue-500 text-white text-center px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                                View Details
+                            </a>
+                            <a href="{{ url_for('export_document_list', session_id=session.id) }}" 
+                               class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
+                                Export
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- Empty State -->
+            <div class="text-center py-12">
+                <div class="mx-auto h-24 w-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                    <svg class="h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">No Document Review Sessions</h3>
+                <p class="text-gray-600 mb-6">Start by creating your first expert witness document review session.</p>
+                <a href="{{ url_for('create_review_session') }}" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                    Create Your First Review Session
+                </a>
+            </div>
+        {% endif %}
+
+        <!-- Info Section -->
+        <div class="mt-12 bg-blue-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-blue-900 mb-4">Expert Witness Document Review Features</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="flex items-start">
+                    <svg class="h-6 w-6 text-blue-600 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div>
+                        <h4 class="font-medium text-blue-900">Professional Documentation</h4>
+                        <p class="text-blue-700 text-sm">Generate professional "Documents Reviewed" sections for expert reports</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <svg class="h-6 w-6 text-blue-600 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    <div>
+                        <h4 class="font-medium text-blue-900">Document Organization</h4>
+                        <p class="text-blue-700 text-sm">Organize documents by type, date, and relevance for easy reference</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <svg class="h-6 w-6 text-blue-600 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <div>
+                        <h4 class="font-medium text-blue-900">Export Ready</h4>
+                        <p class="text-blue-700 text-sm">Export formatted document lists ready for inclusion in expert reports</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -39,6 +39,10 @@
                     <div class="flex-shrink-0 flex items-center">
                         <span class="text-2xl font-bold text-blue-600">OCR Pro</span>
                     </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="{{ url_for('dashboard') }}" class="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                        <a href="{{ url_for('document_reviews') }}" class="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Document Reviews</a>
+                    </div>
                 </div>
                 <div class="flex items-center space-x-4">
                     <span class="text-gray-600">
@@ -144,9 +148,16 @@
 
                     <!-- Download -->
                     <div id="download-section" class="mt-6 text-center hidden">
-                        <a id="download-link" href="#" class="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
-                            Download Processed Files
-                        </a>
+                        <div class="space-y-4">
+                            <a id="download-link" href="#" class="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
+                                Download Processed Files
+                            </a>
+                            <div>
+                                <button onclick="showLinkToSessionModal()" class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors">
+                                    Link to Expert Review Session
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -263,6 +274,48 @@
                 <button onclick="hideSubscribeModal()" class="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors">
                     Cancel
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to Session Modal -->
+    <div id="link-session-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
+                <h3 class="text-xl font-bold mb-4">Link to Expert Review Session</h3>
+                <p class="text-gray-600 mb-4">Select an existing review session to add these processed documents:</p>
+                
+                <div id="session-loading" class="text-center py-4">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                    <p class="text-gray-600 mt-2">Loading sessions...</p>
+                </div>
+                
+                <div id="session-selector" class="hidden">
+                    <select id="session-select" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4">
+                        <option value="">Select a review session...</option>
+                    </select>
+                    
+                    <div class="text-center text-gray-600 mb-4">
+                        <p>OR</p>
+                    </div>
+                    
+                    <a href="{{ url_for('create_review_session') }}" class="w-full inline-block text-center bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors mb-4">
+                        Create New Review Session
+                    </a>
+                </div>
+                
+                <div id="session-error" class="hidden bg-red-100 text-red-700 p-3 rounded mb-4">
+                    <p>Error loading sessions. Please try again.</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button onclick="linkToSession()" id="link-btn" class="flex-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors disabled:opacity-50" disabled>
+                        Link Documents
+                    </button>
+                    <button onclick="hideLinkToSessionModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition-colors">
+                        Cancel
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -420,6 +473,11 @@
                     downloadLink.href = data.download_url;
                     downloadSection.classList.remove('hidden');
                     
+                    // Store file info for potential linking to review sessions
+                    if (data.file_info) {
+                        lastProcessedFiles = data.file_info;
+                    }
+                    
                     // Update credits display if not premium
                     const creditsDisplay = document.querySelector('.credits-display');
                     if (creditsDisplay && data.credits_remaining !== undefined) {
@@ -517,6 +575,94 @@
                 }
             } catch (error) {
                 alert('An error occurred. Please try again.');
+            }
+        }
+
+        // Document Review Session Functions
+        let lastProcessedFiles = [];
+
+        async function showLinkToSessionModal() {
+            document.getElementById('link-session-modal').classList.remove('hidden');
+            await loadUserSessions();
+        }
+
+        function hideLinkToSessionModal() {
+            document.getElementById('link-session-modal').classList.add('hidden');
+        }
+
+        async function loadUserSessions() {
+            const loading = document.getElementById('session-loading');
+            const selector = document.getElementById('session-selector');
+            const error = document.getElementById('session-error');
+            
+            loading.classList.remove('hidden');
+            selector.classList.add('hidden');
+            error.classList.add('hidden');
+            
+            try {
+                const response = await fetch('/get_user_sessions');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const select = document.getElementById('session-select');
+                    select.innerHTML = '<option value="">Select a review session...</option>';
+                    
+                    data.sessions.forEach(session => {
+                        const option = document.createElement('option');
+                        option.value = session.id;
+                        option.textContent = `${session.case_name} - ${session.expert_name}`;
+                        select.appendChild(option);
+                    });
+                    
+                    loading.classList.add('hidden');
+                    selector.classList.remove('hidden');
+                    
+                    // Enable link button when session is selected
+                    select.addEventListener('change', () => {
+                        document.getElementById('link-btn').disabled = !select.value;
+                    });
+                } else {
+                    throw new Error('Failed to load sessions');
+                }
+            } catch (err) {
+                loading.classList.add('hidden');
+                error.classList.remove('hidden');
+            }
+        }
+
+        async function linkToSession() {
+            const sessionId = document.getElementById('session-select').value;
+            if (!sessionId) return;
+            
+            const linkBtn = document.getElementById('link-btn');
+            linkBtn.disabled = true;
+            linkBtn.textContent = 'Linking...';
+            
+            try {
+                const response = await fetch('/link_processing_to_session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        file_info: lastProcessedFiles
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert(data.message);
+                    hideLinkToSessionModal();
+                } else {
+                    alert(data.error || 'Failed to link documents');
+                }
+            } catch (error) {
+                alert('An error occurred while linking documents');
+            } finally {
+                linkBtn.disabled = false;
+                linkBtn.textContent = 'Link Documents';
             }
         }
     </script>

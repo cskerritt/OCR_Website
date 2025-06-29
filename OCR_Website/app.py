@@ -16,7 +16,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from flask_bcrypt import Bcrypt
 from flask_wtf import FlaskForm
 from flask_mail import Mail, Message
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from werkzeug.utils import secure_filename
 from werkzeug.exceptions import RequestEntityTooLarge
@@ -101,6 +101,53 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
 
+# Document Review models for Expert Witness Reports
+class DocumentReviewSession(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    case_name = db.Column(db.String(200), nullable=False)
+    case_number = db.Column(db.String(100))
+    expert_name = db.Column(db.String(100), nullable=False)
+    expert_title = db.Column(db.String(200))
+    review_date = db.Column(db.DateTime, default=db.func.current_timestamp())
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    
+    # Relationship to documents
+    documents = db.relationship('ReviewedDocument', backref='session', lazy=True, cascade='all, delete-orphan')
+    
+    def __repr__(self):
+        return f"DocumentReviewSession('{self.case_name}', '{self.expert_name}')"
+
+class ReviewedDocument(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    session_id = db.Column(db.Integer, db.ForeignKey('document_review_session.id'), nullable=False)
+    
+    # Document metadata
+    original_filename = db.Column(db.String(500), nullable=False)
+    document_title = db.Column(db.String(500))
+    document_type = db.Column(db.String(100))  # Medical Record, Legal Document, Report, etc.
+    document_date = db.Column(db.Date)
+    document_author = db.Column(db.String(200))
+    document_source = db.Column(db.String(200))  # Hospital, Clinic, Attorney, etc.
+    
+    # File information
+    file_size_mb = db.Column(db.Float)
+    page_count = db.Column(db.Integer)
+    file_path = db.Column(db.String(1000))  # Path in uploaded structure
+    
+    # OCR and processing info
+    ocr_processed = db.Column(db.Boolean, default=False)
+    processing_date = db.Column(db.DateTime, default=db.func.current_timestamp())
+    has_text = db.Column(db.Boolean, default=False)
+    
+    # Expert review information
+    review_notes = db.Column(db.Text)
+    relevance_rating = db.Column(db.Integer)  # 1-5 scale
+    key_findings = db.Column(db.Text)
+    
+    def __repr__(self):
+        return f"ReviewedDocument('{self.original_filename}', '{self.document_type}')"
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -142,6 +189,25 @@ class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
+
+# Document Review Forms
+class DocumentReviewSessionForm(FlaskForm):
+    case_name = StringField('Case Name', validators=[DataRequired(), Length(min=2, max=200)])
+    case_number = StringField('Case Number', validators=[Length(max=100)])
+    expert_name = StringField('Expert Name', validators=[DataRequired(), Length(min=2, max=100)])
+    expert_title = StringField('Expert Title/Credentials', validators=[Length(max=200)])
+    submit = SubmitField('Create Review Session')
+
+class DocumentEditForm(FlaskForm):
+    document_title = StringField('Document Title', validators=[Length(max=500)])
+    document_type = StringField('Document Type', validators=[Length(max=100)])
+    document_date = StringField('Document Date (YYYY-MM-DD)')
+    document_author = StringField('Document Author', validators=[Length(max=200)])
+    document_source = StringField('Document Source', validators=[Length(max=200)])
+    review_notes = TextAreaField('Review Notes')
+    relevance_rating = SelectField('Relevance Rating', choices=[(1, '1 - Not Relevant'), (2, '2 - Slightly Relevant'), (3, '3 - Moderately Relevant'), (4, '4 - Very Relevant'), (5, '5 - Highly Relevant')], coerce=int)
+    key_findings = TextAreaField('Key Findings')
+    submit = SubmitField('Update Document')
 
 # Helper functions
 def get_reset_token(user, expires_sec=1800):
@@ -961,6 +1027,167 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
+# Document Review Routes for Expert Witness Reports
+@app.route('/document_reviews')
+@login_required
+def document_reviews():
+    """Display all document review sessions for the current user"""
+    sessions = DocumentReviewSession.query.filter_by(user_id=current_user.id).order_by(DocumentReviewSession.created_at.desc()).all()
+    return render_template('document_reviews.html', title='Document Reviews', sessions=sessions)
+
+@app.route('/create_review_session', methods=['GET', 'POST'])
+@login_required
+def create_review_session():
+    """Create a new document review session"""
+    form = DocumentReviewSessionForm()
+    if form.validate_on_submit():
+        session = DocumentReviewSession(
+            user_id=current_user.id,
+            case_name=form.case_name.data,
+            case_number=form.case_number.data,
+            expert_name=form.expert_name.data,
+            expert_title=form.expert_title.data
+        )
+        db.session.add(session)
+        db.session.commit()
+        flash(f'Document review session created for case: {form.case_name.data}', 'success')
+        return redirect(url_for('review_session_details', session_id=session.id))
+    return render_template('create_review_session.html', title='Create Review Session', form=form)
+
+@app.route('/review_session/<int:session_id>')
+@login_required
+def review_session_details(session_id):
+    """Display details of a specific document review session"""
+    session = DocumentReviewSession.query.filter_by(id=session_id, user_id=current_user.id).first_or_404()
+    documents = ReviewedDocument.query.filter_by(session_id=session_id).order_by(ReviewedDocument.original_filename).all()
+    
+    # Calculate statistics
+    total_documents = len(documents)
+    total_pages = sum(doc.page_count or 0 for doc in documents)
+    ocr_processed = sum(1 for doc in documents if doc.ocr_processed)
+    
+    stats = {
+        'total_documents': total_documents,
+        'total_pages': total_pages,
+        'ocr_processed': ocr_processed,
+        'avg_relevance': round(sum(doc.relevance_rating or 0 for doc in documents) / max(total_documents, 1), 1)
+    }
+    
+    return render_template('review_session_details.html', title=f'Review: {session.case_name}', 
+                         session=session, documents=documents, stats=stats)
+
+@app.route('/edit_document/<int:document_id>', methods=['GET', 'POST'])
+@login_required
+def edit_document(document_id):
+    """Edit document metadata and review information"""
+    document = ReviewedDocument.query.get_or_404(document_id)
+    
+    # Verify user owns this document's session
+    session = DocumentReviewSession.query.filter_by(id=document.session_id, user_id=current_user.id).first_or_404()
+    
+    form = DocumentEditForm(obj=document)
+    if form.validate_on_submit():
+        form.populate_obj(document)
+        # Parse document date if provided
+        if form.document_date.data:
+            try:
+                from datetime import datetime
+                document.document_date = datetime.strptime(form.document_date.data, '%Y-%m-%d').date()
+            except ValueError:
+                flash('Invalid date format. Please use YYYY-MM-DD format.', 'warning')
+                return render_template('edit_document.html', title='Edit Document', form=form, document=document)
+        
+        db.session.commit()
+        flash(f'Document "{document.original_filename}" updated successfully', 'success')
+        return redirect(url_for('review_session_details', session_id=document.session_id))
+    
+    # Pre-populate date field
+    if document.document_date:
+        form.document_date.data = document.document_date.strftime('%Y-%m-%d')
+    
+    return render_template('edit_document.html', title='Edit Document', form=form, document=document)
+
+@app.route('/export_document_list/<int:session_id>')
+@login_required
+def export_document_list(session_id):
+    """Export document list for expert witness reports"""
+    session = DocumentReviewSession.query.filter_by(id=session_id, user_id=current_user.id).first_or_404()
+    documents = ReviewedDocument.query.filter_by(session_id=session_id).order_by(ReviewedDocument.original_filename).all()
+    
+    # Group documents by type
+    grouped_docs = {}
+    for doc in documents:
+        doc_type = doc.document_type or 'Other Documents'
+        if doc_type not in grouped_docs:
+            grouped_docs[doc_type] = []
+        grouped_docs[doc_type].append(doc)
+    
+    return render_template('export_document_list.html', title='Documents Reviewed Export', 
+                         session=session, grouped_docs=grouped_docs, documents=documents)
+
+@app.route('/link_processing_to_session', methods=['POST'])
+@login_required
+def link_processing_to_session():
+    """Link recently processed files to a document review session"""
+    data = request.get_json()
+    session_id = data.get('session_id')
+    file_info = data.get('file_info', [])
+    
+    if not session_id or not file_info:
+        return jsonify({'error': 'Missing session_id or file_info'}), 400
+    
+    # Verify session belongs to user
+    session = DocumentReviewSession.query.filter_by(id=session_id, user_id=current_user.id).first()
+    if not session:
+        return jsonify({'error': 'Session not found'}), 404
+    
+    try:
+        documents_created = 0
+        for file_data in file_info:
+            # Check if document already exists in this session
+            existing = ReviewedDocument.query.filter_by(
+                session_id=session_id,
+                original_filename=file_data.get('name')
+            ).first()
+            
+            if not existing:
+                # Create new document record
+                document = ReviewedDocument(
+                    session_id=session_id,
+                    original_filename=file_data.get('name'),
+                    file_path=file_data.get('path', file_data.get('name')),
+                    page_count=file_data.get('page_count'),
+                    file_size_mb=file_data.get('size_mb'),
+                    ocr_processed=True,
+                    has_text=True
+                )
+                db.session.add(document)
+                documents_created += 1
+        
+        db.session.commit()
+        return jsonify({'success': True, 'message': f'{documents_created} documents added to review session'})
+    
+    except Exception as e:
+        db.session.rollback()
+        logger.error(f"Error linking documents to session: {str(e)}")
+        return jsonify({'error': 'Failed to link documents'}), 500
+
+@app.route('/get_user_sessions')
+@login_required
+def get_user_sessions():
+    """Get document review sessions for the current user"""
+    sessions = DocumentReviewSession.query.filter_by(user_id=current_user.id).order_by(DocumentReviewSession.created_at.desc()).all()
+    session_data = [
+        {
+            'id': session.id,
+            'case_name': session.case_name,
+            'case_number': session.case_number,
+            'expert_name': session.expert_name
+        }
+        for session in sessions
+    ]
+    return jsonify({'sessions': session_data})
 
 # Initialize database
 def create_tables():
